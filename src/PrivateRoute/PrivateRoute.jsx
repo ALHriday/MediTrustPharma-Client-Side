@@ -12,7 +12,7 @@ const PrivateRoute = ({ children }) => {
         </div>
     }
 
-    if (!user) {
+    if (user) {
         return children;
     }
 

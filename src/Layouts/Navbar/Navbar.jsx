@@ -1,10 +1,34 @@
+import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+    const { user, signOutUser, setUser } = useAuth();
+
+    const handleLogOut = () => {
+        signOutUser()
+            .then(() => {
+                setUser(null);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "LogOut Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+            ).catch(error => error)
+    }
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link to='/'>
+                    <div className="btn btn-ghost text-xl"> <div className="w-10">
+                        <img className="w-full" src="https://img.icons8.com/?size=100&id=108787&format=png&color=000000" alt="" />
+                    </div> MediTrustPharma</div>
+                </Link>
             </div>
+
             <div className="flex-none">
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -38,11 +62,20 @@ const Navbar = () => {
                 </div>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img
-                                alt="Tailwind CSS Navbar component"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                        </div>
+                        {user ? <div>
+                            <div className="w-10 h-10 rounded-full">
+                                <img className="w-full h-full rounded-full object-cover"
+                                    title={user?.displayName}
+                                    alt="Tailwind CSS Navbar component"
+                                    src={user?.photoURL} />
+                            </div>
+                        </div> :
+                            <div className="w-10 rounded-full">
+                                <img
+                                    alt="Tailwind CSS Navbar component"
+                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            </div>
+                        }
                     </div>
                     <ul
                         tabIndex={0}
@@ -54,9 +87,20 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li>{user ?
+                            <div className="ml-2">
+                                <button onClick={handleLogOut} className="btn btn-sm">LogOut</button>
+                            </div>
+                            :
+                            <div className="flex justify-center items-center gap-2">
+                                <Link className="btn btn-sm" to='/register'>Register</Link>
+                                <Link className="btn btn-sm" to='/login'>LogIn</Link>
+                            </div>
+                        }</li>
                     </ul>
                 </div>
+
+
             </div>
         </div>
     );

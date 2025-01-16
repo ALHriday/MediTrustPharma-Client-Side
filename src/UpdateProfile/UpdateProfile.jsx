@@ -12,12 +12,12 @@ const UpdateProfile = () => {
         const form = e.target;
         const userName = form.userName.value;
         const photo = form.photoURL.value;
-        console.log(userName, photo);
+        // console.log(userName, photo);
         Swal.fire({
             title: "Are you sure?",
             // text: "You won't be able to revert this!",
-            icon: "success",
-            // icon: "warning",
+            // icon: "success",
+            icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
@@ -36,9 +36,6 @@ const UpdateProfile = () => {
               form.photoURL.value = '';
             }
           });
-
-        
-        // updateProfile(auth.currentUser, {photoURL : photo})
     }
 
 

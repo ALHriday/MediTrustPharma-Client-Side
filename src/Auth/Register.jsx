@@ -40,6 +40,9 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+        console.log(photo);
+        
+
         const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{8,}$/;
 
         if (regex.test(password)) {

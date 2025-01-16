@@ -3,9 +3,7 @@ import useData from "../../Hooks/useData";
 
 
 const Categories = () => {
-    const [data, loading] = useData();
-    
-    console.log(data, loading);
+    const [data] = useData();
    
     return (
         <div>

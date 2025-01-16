@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-// import { auth } from "../../Auth/firebase.init";
 
 const Navbar = () => {
     const { user, signOutUser, setUser } = useAuth();
@@ -31,9 +30,10 @@ const Navbar = () => {
                 </Link>
             </div>
 
-            <div className="flex justify-center items-center gap-2 mr-2">
+            <div className="hidden md:flex justify-center items-center gap-2 mr-2">
                 <Link className="btn btn-sm" to='/'>Home</Link>
                 <Link className="btn btn-sm" to='/shop'>Shop</Link>
+                <Link className="btn btn-sm" to='/joinUs'>Join Us</Link>
             </div>
 
             <div className="flex-none">
@@ -82,13 +82,20 @@ const Navbar = () => {
                             <div className="w-10 rounded-full">
                                 <img
                                     alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    src="https://img.icons8.com/?size=100&id=kDoeg22e5jUY&format=png&color=000000" />
                             </div>
                         }
                     </div>
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+
+                        <li className="flex flex-col md:hidden justify-center items-start gap-1 mb-1">
+                            <Link className="" to='/'>Home</Link>
+                            <Link className="" to='/shop'>Shop</Link>
+                            <Link className="" to='/joinUs'>Join Us</Link>
+                        </li>
+
                         {user ? <>
                             <li><Link to='/updateProfile'>Update Profile</Link></li>
                             <li><a>Dashboard</a></li>
@@ -104,6 +111,7 @@ const Navbar = () => {
                                 <Link className="btn btn-sm" to='/login'>LogIn</Link>
                             </div>
                         }</li>
+
                     </ul>
                 </div>
 

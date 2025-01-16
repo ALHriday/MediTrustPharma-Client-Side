@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+// import { auth } from "../../Auth/firebase.init";
 
 const Navbar = () => {
     const { user, signOutUser, setUser } = useAuth();
@@ -19,6 +20,7 @@ const Navbar = () => {
             }
             ).catch(error => error)
     }
+
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -29,8 +31,14 @@ const Navbar = () => {
                 </Link>
             </div>
 
+            <div className="flex justify-center items-center gap-2 mr-2">
+                <Link className="btn btn-sm" to='/'>Home</Link>
+                <Link className="btn btn-sm" to='/shop'>Shop</Link>
+            </div>
+
             <div className="flex-none">
                 <div className="dropdown dropdown-end">
+
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                         <div className="indicator">
                             <svg
@@ -48,6 +56,7 @@ const Navbar = () => {
                             <span className="badge badge-sm indicator-item">8</span>
                         </div>
                     </div>
+
                     <div
                         tabIndex={0}
                         className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
@@ -80,13 +89,11 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </a>
-                        </li>
-                        <li><a>Settings</a></li>
+                        {user ? <>
+                            <li><Link to='/updateProfile'>Update Profile</Link></li>
+                            <li><a>Dashboard</a></li>
+                        </> : ''}
+
                         <li>{user ?
                             <div className="ml-2">
                                 <button onClick={handleLogOut} className="btn btn-sm">LogOut</button>

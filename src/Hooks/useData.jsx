@@ -13,7 +13,6 @@ const useData = () => {
             })
     }, []);
     return [data, loading]
-
 };
 
 export default useData;

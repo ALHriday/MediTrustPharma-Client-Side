@@ -4,6 +4,8 @@ import Home from "../Layouts/Home/Home";
 import ErrorPage from "../Error/ErrorPage";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
+import Categories from "../Components/Categories/Categories";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register/>
+      },
+      {
+        path: '/categories',
+        element: <PrivateRoute><Categories/></PrivateRoute>
       }
     ]
   },

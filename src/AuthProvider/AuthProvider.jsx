@@ -11,6 +11,8 @@ const AuthProvider = ({ children }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [passValidation, setPassValidation] = useState('');
     const [showPass, setShowPass] = useState(false);
+    // const [data, setData] = useState([]);
+    const [products, setProducts] = useState([]);
 
 
     const signInWithGoogle = () => {
@@ -63,7 +65,11 @@ const AuthProvider = ({ children }) => {
         errorMessage,
         setErrorMessage,
         passValidation,
-        setPassValidation
+        setPassValidation,
+        // data,
+        // setData,
+        products,
+        setProducts
 
     }
 

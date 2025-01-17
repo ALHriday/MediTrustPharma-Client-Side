@@ -10,7 +10,6 @@ const Home = () => {
                 <title>MediTrust | Home</title>
             </Helmet>
             <Banner/>
-            <h1>This is Home</h1>
             {/* <Link className="btn btn-primary" to='/categories'> Categories</Link> */}
             <Categories></Categories>
         </div>

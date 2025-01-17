@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Auth/firebase.init";
+import axios from "axios";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types
@@ -11,8 +12,9 @@ const AuthProvider = ({ children }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [passValidation, setPassValidation] = useState('');
     const [showPass, setShowPass] = useState(false);
-    // const [data, setData] = useState([]);
     const [products, setProducts] = useState([]);
+    const [search, setSearch] = useState('');
+
 
 
     const signInWithGoogle = () => {
@@ -44,6 +46,12 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        axios.get(`http://localhost:2100/products?title=${search}`)
+            .then(res => setProducts(res.data)
+            )
+    }, [search])
+
+    useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
@@ -66,10 +74,10 @@ const AuthProvider = ({ children }) => {
         setErrorMessage,
         passValidation,
         setPassValidation,
-        // data,
-        // setData,
         products,
-        setProducts
+        setProducts,
+        search,
+        setSearch
 
     }
 

@@ -4,7 +4,7 @@ import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-
+import axios from "axios";
 
 
 const Login = () => {
@@ -14,9 +14,24 @@ const Login = () => {
     const showPassRef = useRef();
 
     const handleGoogleSignIn = () => {
+
         signInWithGoogle()
             .then(result => {
                 if (result.user) {
+                    const user = result.user;
+
+                    const userName = user.displayName;
+                    const userEmail = user.email;
+                    const photoURL = user.photoURL;
+
+                    const userInfo = { userName, userEmail, photoURL, role: 'user', status: '' };
+
+                    axios.post(`http://localhost:2100/users`, userInfo).then(res => {
+                        if (res.data.insertedId) {
+                            return res.data;
+                        }
+                    })
+
                     Swal.fire({
                         position: "top-end",
                         icon: "success",

@@ -14,7 +14,7 @@ const AdminRoute = ({ children }) => {
         </div>
     }
 
-    if (user && currentUser) {
+    if (user && currentUser?.role == 'admin') {
         return children;
     }
 

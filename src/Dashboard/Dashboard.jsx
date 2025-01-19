@@ -22,7 +22,7 @@ const Dashboard = () => {
             </div>
             <div className="col-span-3 flex flex-col p-4 h-screen ">
                 <h1 className="text-4xl font-bold border-b-2 border-black py-4">Hi, {currentUser.userName}. <br /> Welcome to Dashboard</h1>
-                <div>
+                <div className="p-4">
                     <Outlet></Outlet>
                 </div>
             </div>

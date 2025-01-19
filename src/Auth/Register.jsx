@@ -10,15 +10,30 @@ import axios from "axios";
 
 const Register = () => {
 
-    const { createAccountWithEmailAndPass, setUser, passValidation, setPassValidation, showPass, togglePassword, signInWithGoogle, signOutUser } = useAuth();
+    const { createAccountWithEmailAndPass, setUser, signInWithGoogle, passValidation, setPassValidation, showPass, togglePassword, signOutUser } = useAuth();
 
     const navigate = useNavigate();
     const showPassRef = useRef();
 
     const handleGoogleSignIn = () => {
+
         signInWithGoogle()
             .then(result => {
                 if (result.user) {
+                    const user = result.user;
+
+                    const userName = user.displayName;
+                    const userEmail = user.email;
+                    const photoURL = user.photoURL;
+
+                    const userInfo = { userName, userEmail, photoURL, role: 'user', status: '' };
+
+                    axios.post(`http://localhost:2100/users`, userInfo).then(res => {
+                        if (res.data.insertedId) {
+                            return res.data;
+                        }
+                    })
+
                     Swal.fire({
                         position: "top-end",
                         icon: "success",

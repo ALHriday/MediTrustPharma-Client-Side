@@ -12,6 +12,7 @@ import Dashboard from "../Dashboard/Dashboard";
 // import AdminRoute from "../AdminRoute/AdminRoute";
 import AddProduct from "../Dashboard/AddProduct";
 import UpdateProduct from "../Dashboard/UpdateProduct";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -43,14 +44,6 @@ export const router = createBrowserRouter([
         path: '/updateProfile',
         element: <PrivateRoute><UpdateProfile/></PrivateRoute>
       },
-      // {
-      //   path: '/add_product',
-      //   element: <PrivateRoute><AddProduct /></PrivateRoute>
-      // },
-      // {
-      //   path: '/update_product',
-      //   element: <PrivateRoute><UpdateProduct /></PrivateRoute>
-      // }
     ]
   },
   {
@@ -64,7 +57,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/update_product',
-        element: <PrivateRoute><UpdateProduct /></PrivateRoute>
+        element: <PrivateRoute><AdminRoute><UpdateProduct /></AdminRoute></PrivateRoute>
       }
     ]
   },

@@ -17,15 +17,12 @@ const AuthProvider = ({ children }) => {
     const [allUser, setAllUser] = useState([]);
     const [currentUser, setCurrentUser] = useState([]);
 
-    console.log(currentUser);
-    
-
-
     const signInWithGoogle = () => {
         setLoading(true);
         const googleProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, googleProvider);
     }
+    
     const signOutUser = () => {
         setLoading(true);
         return signOut(auth);
@@ -48,12 +45,15 @@ const AuthProvider = ({ children }) => {
             setShowPass(false);
         }
     }
-    
+
     useEffect(() => {
-        axios.get(`http://localhost:2100/users/${user?.email}`)
+        if (user) {
+            axios.get(`http://localhost:2100/users/${user?.email}`)
             .then(res => setCurrentUser(res.data)
-            )
-    }, [user.email]);
+            ) 
+        }
+        
+    }, [user]);
 
     useEffect(() => {
         axios.get(`https://medi-trust-pharma-server.vercel.app/users`)

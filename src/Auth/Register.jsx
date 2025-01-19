@@ -6,30 +6,32 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
+import axios from "axios";
 
 const Register = () => {
 
-    const { createAccountWithEmailAndPass, setUser, passValidation, setPassValidation, showPass, togglePassword, signInWithGoogle } = useAuth();
+    const { createAccountWithEmailAndPass, setUser, passValidation, setPassValidation, showPass, togglePassword, signInWithGoogle, signOutUser } = useAuth();
+
     const navigate = useNavigate();
     const showPassRef = useRef();
 
     const handleGoogleSignIn = () => {
-            signInWithGoogle()
-                .then(result => {
-                    if (result.user) {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "LogIn Successful",
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        setUser(result.user)
-                        navigate('/')
-                    }
+        signInWithGoogle()
+            .then(result => {
+                if (result.user) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "LogIn Successful",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    setUser(result.user)
+                    navigate('/')
                 }
-                ).catch(error => error)
-        }
+            }
+            ).catch(error => error)
+    }
 
 
     const handleUserWithEmailAndPassword = (e) => {
@@ -40,8 +42,8 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(photo);
-        
+        const userInfo = { userName: name, userEmail: email, photoURL: photo, role: 'user', status: '' }
+
 
         const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{8,}$/;
 
@@ -53,6 +55,19 @@ const Register = () => {
                     updateProfile(auth.currentUser, { displayName: name, photoURL: photo });
 
                     if (result.user) {
+                        signOutUser()
+                            .then(() => setUser(null)
+                            ).catch(error => error)
+
+                        axios.post('http://localhost:2100/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId
+                                ) {
+                                    return res.data
+                                }
+                            }
+                            ).catch(err => err);
+
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
@@ -73,7 +88,6 @@ const Register = () => {
             setPassValidation("Password Must Contain  1 UpperCase, 1 LowerCase, 1 Special Character and at least 8 digits.");
         }
 
-
     }
 
     return (
@@ -84,7 +98,7 @@ const Register = () => {
                     <p className="py-6">
                         Register now to join and unlock exclusive benefits!
                     </p>
-                   
+
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <form onSubmit={handleUserWithEmailAndPassword} className="card-body">

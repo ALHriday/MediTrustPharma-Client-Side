@@ -14,8 +14,8 @@ const AuthProvider = ({ children }) => {
     const [showPass, setShowPass] = useState(false);
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
-
-
+    const [allUser, setAllUser] = useState([]);
+    
 
     const signInWithGoogle = () => {
         setLoading(true);
@@ -44,9 +44,14 @@ const AuthProvider = ({ children }) => {
             setShowPass(false);
         }
     }
+    useEffect(() => {
+        axios.get(`http://localhost:2100/users`)
+        .then(res => setAllUser(res.data)
+        )
+    }, [])
 
     useEffect(() => {
-        axios.get(`http://localhost:2100/products?title=${search}`)
+        axios.get(`https://medi-trust-pharma-server.vercel.app/products?title=${search}`)
             .then(res => setProducts(res.data)
             )
     }, [search])
@@ -77,7 +82,9 @@ const AuthProvider = ({ children }) => {
         products,
         setProducts,
         search,
-        setSearch
+        setSearch,
+        allUser,
+        setAllUser
 
     }
 

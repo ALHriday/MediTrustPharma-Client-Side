@@ -1,7 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import useData from "../../Hooks/useData";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -12,8 +10,8 @@ const Categories = () => {
     const categoryData = [...new Set(data.map(d => d.category))];
 
     const handleCategory = (category) => {
-        axios.get(`http://localhost:2100/products/${category}`)
-        .then(res => setProducts(res.data))
+        axios.get(`https://medi-trust-pharma-server.vercel.app/products/${category}`)
+            .then(res => setProducts(res.data))
     }
 
     return (

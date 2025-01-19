@@ -5,7 +5,7 @@ const useData = () => {
     const [ data, setData ] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        axios.get(`http://localhost:2100/products`)
+        axios.get(`https://medi-trust-pharma-server.vercel.app/products`)
             .then(res => {
             setData(res.data)
                 setLoading(false);

@@ -1,9 +1,13 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
+import { FaEye } from "react-icons/fa";
+// import { useState } from "react";
 
 const Shop = () => {
 
     const { products, setSearch } = useAuth();
+    // const [showModal, setShowModal] = useState(false);
+
 
     return (
         <div className="w-full">
@@ -27,21 +31,69 @@ const Shop = () => {
                 </label>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
 
-                {
-                    products.map(d => <div className="grid grid-cols-3 gap-2 p-4 shadow-md" key={d._id}>
-                        <div className="rounded-md">
-                            <img className="w-full rounded-md" src={d.image} alt="" />
-                        </div>
-                        <div className="col-span-2 p-2">
-                            <p className="font-bold mb-1">{d.title}</p>
-                            <p>${d.price}</p>
-                        </div>
-                    </div>)
-                }
+            <div className="overflow-x-auto">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th className="text-center">Details / Cart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* row 1 */}
+
+                        {products && products.map((product, i) => <tr key={i}>
+                            <td >
+                                <div className="flex items-center gap-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle h-12 w-12">
+                                            <img
+                                                src={product.image}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="font-bold">{product.title}</div>
+                                        <div className="text-sm opacity-50">{product.category}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                ${product.price}
+                            </td>
+                            <td>{product.description}</td>
+                            <td>
+                                <div className="flex gap-2 justify-center items-center">
+                                    <button className="btn btn-sm"><FaEye></FaEye></button>
+                                    <button className="btn btn-sm">Select</button>
+                                </div>
+
+                            </td>
+
+                        </tr>)}
+
+
+                    </tbody>
+                    {/* foot */}
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
-        </div>
+
+
+
+        </div >
     );
 };
 

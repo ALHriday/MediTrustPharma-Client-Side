@@ -18,10 +18,8 @@ const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState([]);
     const [searchUser, setSearchUser] = useState([]);
 
-    console.log(allUser);
-    
-
     const axiosPublic = useAxiosPublic();
+    
 
     const signInWithGoogle = () => {
         setLoading(true);

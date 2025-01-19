@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
-import { FaEye } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
-// import { useState } from "react";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const Shop = () => {
 
@@ -16,7 +16,7 @@ const Shop = () => {
                 <title>MediTrust | Shop</title>
             </Helmet>
 
-            <div className={` ${location.pathname == '/dashboard' ? "top-[0px] justify-between" : "top-[66px] justify-center"} sticky  shadow-sm bg-slate-50 z-10 flex  items-center py-4`}>
+            <div className={` ${location.pathname == '/dashboard' ? "top-[0px] justify-between" : "top-[66px] justify-center"} sticky  shadow-sm bg-slate-50 z-10 flex gap-2 items-center py-4`}>
                 <div>
 
                 </div>
@@ -33,7 +33,7 @@ const Shop = () => {
                             clipRule="evenodd" />
                     </svg>
                 </label>
-                <div className="pr-4"> {location.pathname == '/dashboard' ? <p> Total Products: { products.length}</p> : ''} </div>
+                <div className="pr-4"> {location.pathname == '/dashboard' ? <p> Total Products: {products.length}</p> : ''} </div>
             </div>
 
 
@@ -73,8 +73,12 @@ const Shop = () => {
                             <td>{product.description}</td>
                             <td>
                                 <div className="flex gap-2 justify-center items-center">
-                                    <button className="btn btn-sm"><FaEye></FaEye></button>
-                                    <button className="btn btn-sm">Select</button>
+                                    <button className="btn btn-sm btn-accent text-white"><FaEye></FaEye></button>
+                                    {location.pathname == '/dashboard' ? <>
+                                        <button className="btn btn-sm btn-secondary"> <FaEdit></FaEdit> </button>
+                                        <button className="btn btn-sm bg-red-600 text-white"> <FaTrash></FaTrash> </button>
+                                    </> : <button className="btn btn-sm btn-secondary">Select</button>}
+
                                 </div>
 
                             </td>

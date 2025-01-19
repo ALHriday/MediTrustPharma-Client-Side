@@ -13,6 +13,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import AddProduct from "../Dashboard/AddProduct";
 import UpdateProduct from "../Dashboard/UpdateProduct";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import Cart from "../Components/Cart/Cart";
+import AllUser from "../Dashboard/AllUser";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,10 @@ export const router = createBrowserRouter([
         path: '/updateProfile',
         element: <PrivateRoute><UpdateProfile/></PrivateRoute>
       },
+      {
+        path: '/cart',
+        element: <Cart></Cart>
+      },
     ]
   },
   {
@@ -52,12 +58,20 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
+        path: '/dashboard',
+        element: <PrivateRoute><Shop /></PrivateRoute>
+      },
+      {
         path: '/dashboard/add_product',
         element: <PrivateRoute><AddProduct /></PrivateRoute>
       },
       {
         path: '/dashboard/update_product',
         element: <PrivateRoute><AdminRoute><UpdateProduct /></AdminRoute></PrivateRoute>
+      },
+      {
+        path: '/dashboard/all_user',
+        element: <PrivateRoute><AdminRoute><AllUser /></AdminRoute></PrivateRoute>
       }
     ]
   },

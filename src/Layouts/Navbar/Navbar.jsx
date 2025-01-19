@@ -21,7 +21,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="sticky top-0 z-20 navbar bg-base-100">
             <div className="flex-1">
                 <Link to='/'>
                     <div className="btn btn-ghost text-xl"> <div className="w-10">
@@ -64,7 +64,7 @@ const Navbar = () => {
                             <span className="text-lg font-bold">8 Items</span>
                             <span className="text-info">Subtotal: $999</span>
                             <div className="card-actions">
-                                <button className="btn btn-primary btn-block">View cart</button>
+                                <Link to='/cart' className="btn btn-primary btn-block">View cart</Link>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-20">
 
                         <li className="flex flex-col md:hidden justify-center items-start gap-1 mb-1">
                             <Link className="" to='/'>Home</Link>
@@ -98,7 +98,7 @@ const Navbar = () => {
 
                         {user ? <>
                             <li><Link to='/updateProfile'>Update Profile</Link></li>
-                            <li><Link to='dashboard'>Dashboard</Link></li>
+                            <li><Link to='/dashboard'>Dashboard</Link></li>
                         </> : ''}
 
                         <li>{user ?

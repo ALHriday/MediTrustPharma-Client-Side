@@ -2,15 +2,16 @@ import { Helmet } from "react-helmet-async";
 import useData from "../../Hooks/useData";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Categories = () => {
+    const axiosPublic = useAxiosPublic();
     const { setProducts } = useAuth();
     const [data] = useData();
     const categoryData = [...new Set(data.map(d => d.category))];
 
     const handleCategory = (category) => {
-        axios.get(`https://medi-trust-pharma-server.vercel.app/products/${category}`)
+        axiosPublic.get(`/products/${category}`)
             .then(res => setProducts(res.data))
     }
 

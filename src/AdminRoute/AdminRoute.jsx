@@ -5,8 +5,6 @@ import useAuth from "../Hooks/useAuth";
 const AdminRoute = ({ children }) => {
     
     const { user, currentUser, loading } = useAuth();
-
-    console.log(currentUser.role);
     
     if (loading) {
         return <div className="flex justify-center items-center">

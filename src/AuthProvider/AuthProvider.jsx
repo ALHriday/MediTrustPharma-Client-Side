@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Auth/firebase.init";
-import axios from "axios";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types
@@ -16,13 +16,19 @@ const AuthProvider = ({ children }) => {
     const [search, setSearch] = useState('');
     const [allUser, setAllUser] = useState([]);
     const [currentUser, setCurrentUser] = useState([]);
+    const [searchUser, setSearchUser] = useState([]);
+
+    console.log(allUser);
+    
+
+    const axiosPublic = useAxiosPublic();
 
     const signInWithGoogle = () => {
         setLoading(true);
         const googleProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, googleProvider);
     }
-    
+
     const signOutUser = () => {
         setLoading(true);
         return signOut(auth);
@@ -48,24 +54,28 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            axios.get(`http://localhost:2100/users/${user?.email}`)
+            axiosPublic.get(`/users/${user?.email}`)
             .then(res => setCurrentUser(res.data)
             ) 
-        }
-        
-    }, [user]);
+        }   
+    }, [axiosPublic, user]);
 
     useEffect(() => {
-        axios.get(`https://medi-trust-pharma-server.vercel.app/users`)
+        axiosPublic.get(`/users`)
             .then(res => setAllUser(res.data)
             )
-    }, []);
+    }, [axiosPublic]);
 
     useEffect(() => {
-        axios.get(`https://medi-trust-pharma-server.vercel.app/products?title=${search}`)
+        axiosPublic.get(`/products?title=${search}`)
             .then(res => setProducts(res.data)
             )
-    }, [search]);
+    }, [axiosPublic, search]);
+
+    useEffect(() => {
+        axiosPublic.get(`/users?userName=${searchUser}`)
+     .then(res => setAllUser(res.data))   
+    }, [axiosPublic, searchUser])
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -97,7 +107,9 @@ const AuthProvider = ({ children }) => {
         allUser,
         setAllUser,
         currentUser,
-        setCurrentUser
+        setCurrentUser,
+        searchUser,
+        setSearchUser
 
     }
 

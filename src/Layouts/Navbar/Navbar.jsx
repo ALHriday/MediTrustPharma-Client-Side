@@ -98,7 +98,7 @@ const Navbar = () => {
 
                         {user ? <>
                             <li><Link to='/updateProfile'>Update Profile</Link></li>
-                            <li><a>Dashboard</a></li>
+                            <li><Link to='dashboard'>Dashboard</Link></li>
                         </> : ''}
 
                         <li>{user ?

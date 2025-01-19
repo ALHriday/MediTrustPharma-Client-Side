@@ -8,6 +8,10 @@ import Categories from "../Components/Categories/Categories";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import Shop from "../Components/Shop/Shop";
+import Dashboard from "../Dashboard/Dashboard";
+// import AdminRoute from "../AdminRoute/AdminRoute";
+import AddProduct from "../Dashboard/AddProduct";
+import UpdateProduct from "../Dashboard/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -32,12 +36,35 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><Categories/></PrivateRoute>
       },
       {
+        path: '/shop',
+        element: <Shop/>
+      },
+      {
         path: '/updateProfile',
         element: <PrivateRoute><UpdateProfile/></PrivateRoute>
       },
+      // {
+      //   path: '/add_product',
+      //   element: <PrivateRoute><AddProduct /></PrivateRoute>
+      // },
+      // {
+      //   path: '/update_product',
+      //   element: <PrivateRoute><UpdateProduct /></PrivateRoute>
+      // }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
       {
-        path: '/shop',
-        element: <Shop/>
+        path: '/dashboard/add_product',
+        element: <PrivateRoute><AddProduct /></PrivateRoute>
+      },
+      {
+        path: '/dashboard/update_product',
+        element: <PrivateRoute><UpdateProduct /></PrivateRoute>
       }
     ]
   },

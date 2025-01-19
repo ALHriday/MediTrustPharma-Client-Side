@@ -59,7 +59,7 @@ const Register = () => {
                             .then(() => setUser(null)
                             ).catch(error => error)
 
-                        axios.post('http://localhost:2100/users', userInfo)
+                        axios.post('https://medi-trust-pharma-server.vercel.app/users', userInfo)
                             .then(res => {
                                 if (res.data.insertedId
                                 ) {
@@ -87,7 +87,6 @@ const Register = () => {
         } else {
             setPassValidation("Password Must Contain  1 UpperCase, 1 LowerCase, 1 Special Character and at least 8 digits.");
         }
-
     }
 
     return (

@@ -15,7 +15,11 @@ const AuthProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
     const [allUser, setAllUser] = useState([]);
+    const [currentUser, setCurrentUser] = useState([]);
+
+    console.log(currentUser);
     
+
 
     const signInWithGoogle = () => {
         setLoading(true);
@@ -44,17 +48,24 @@ const AuthProvider = ({ children }) => {
             setShowPass(false);
         }
     }
+    
     useEffect(() => {
-        axios.get(`http://localhost:2100/users`)
-        .then(res => setAllUser(res.data)
-        )
-    }, [])
+        axios.get(`http://localhost:2100/users/${user?.email}`)
+            .then(res => setCurrentUser(res.data)
+            )
+    }, [user.email]);
+
+    useEffect(() => {
+        axios.get(`https://medi-trust-pharma-server.vercel.app/users`)
+            .then(res => setAllUser(res.data)
+            )
+    }, []);
 
     useEffect(() => {
         axios.get(`https://medi-trust-pharma-server.vercel.app/products?title=${search}`)
             .then(res => setProducts(res.data)
             )
-    }, [search])
+    }, [search]);
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -62,7 +73,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
         })
         return () => unSubscribe();
-    }, [])
+    }, []);
 
     const values = {
         loading,
@@ -84,7 +95,9 @@ const AuthProvider = ({ children }) => {
         search,
         setSearch,
         allUser,
-        setAllUser
+        setAllUser,
+        currentUser,
+        setCurrentUser
 
     }
 

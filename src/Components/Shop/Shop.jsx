@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
-import { FaDeleteLeft } from "react-icons/fa6";
 
 const Shop = () => {
 

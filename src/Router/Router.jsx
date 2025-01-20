@@ -15,6 +15,7 @@ import UpdateProduct from "../Dashboard/UpdateProduct";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import Cart from "../Components/Cart/Cart";
 import AllUser from "../Dashboard/AllUser";
+import BannerImage from "../Dashboard/BannerImage";
 
 export const router = createBrowserRouter([
   {
@@ -72,7 +73,11 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/all_user',
         element: <PrivateRoute><AdminRoute><AllUser /></AdminRoute></PrivateRoute>
-      }
+      },
+      {
+        path: '/dashboard/banner_image',
+        element: <PrivateRoute><AdminRoute><BannerImage /></AdminRoute></PrivateRoute>
+      },
     ]
   },
 ]);

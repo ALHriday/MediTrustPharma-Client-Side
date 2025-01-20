@@ -15,11 +15,16 @@ const Dashboard = () => {
                     <h1 className="text-xl font-bold mb-4 ">MediTrustPharma</h1>
                 </div>
                 <div className="flex flex-col gap-2 overflow-x-auto">
-
-                    <Link className="btn " to='/dashboard/all_user'><FaUsers className="text-teal-500 "></FaUsers>All User</Link>
-                    <Link className="btn " to='/dashboard'> <FaProductHunt></FaProductHunt> Products</Link>
-                    <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
-                    <Link className="btn " to='/dashboard/update_product'>Update Product</Link>
+                    {currentUser.role == 'admin' ? <>
+                        <Link className="btn " to='/dashboard/all_user'><FaUsers className="text-teal-500 "></FaUsers>All User</Link>
+                        <Link className="btn " to='/dashboard'> <FaProductHunt></FaProductHunt> Products</Link>
+                        <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
+                        <Link className="btn " to='/dashboard/update_product'>Update Product</Link>
+                        <Link className="btn " to='/dashboard/banner_image'>Banner Image Update</Link>
+                    </> : <>
+                        <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
+                        <Link className="btn " to='/dashboard/update_product'>Update Product</Link>
+                    </>}
                 </div>
                 <div className="w-full mt-8">
                     <Link className="btn btn-neutral w-full" to='/'>Go to Home</Link>

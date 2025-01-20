@@ -24,7 +24,7 @@ const UpdateProfile = () => {
             confirmButtonText: "Yes, Update it!"
           }).then((result) => {
               if (result.isConfirmed) {
-                console.log('Profile Updated');
+                // console.log('Profile Updated');
                 updateProfile(auth.currentUser, {displayName: userName ,photoURL : photo})
               Swal.fire({
                 title: "Account Updated",

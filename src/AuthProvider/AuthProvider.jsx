@@ -15,13 +15,13 @@ const AuthProvider = ({ children }) => {
     const [showPass, setShowPass] = useState(false);
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
-    const [allUser, setAllUser] = useState([]);
+    // const [allUser, setAllUser] = useState([]);
     const [currentUser, setCurrentUser] = useState([]);
     const [searchUser, setSearchUser] = useState([]);
     const [images, setImages] = useState([]);
 
+    
     const axiosPublic = useAxiosPublic();
-
 
     const signInWithGoogle = () => {
         setLoading(true);
@@ -60,11 +60,6 @@ const AuthProvider = ({ children }) => {
         }   
     }, [axiosPublic, user]);
 
-    useEffect(() => {
-        axiosPublic.get(`/users`)
-            .then(res => setAllUser(res.data)
-            )
-    }, [axiosPublic]);
 
     useEffect(() => {
         axiosPublic.get(`/products?title=${search}`)
@@ -72,10 +67,6 @@ const AuthProvider = ({ children }) => {
             )
     }, [axiosPublic, search]);
 
-    useEffect(() => {
-        axiosPublic.get(`/users?userName=${searchUser}`)
-     .then(res => setAllUser(res.data))   
-    }, [axiosPublic, searchUser])
 
 
     useEffect(() => {
@@ -105,8 +96,8 @@ const AuthProvider = ({ children }) => {
         setProducts,
         search,
         setSearch,
-        allUser,
-        setAllUser,
+        // allUser,
+        // setAllUser,
         currentUser,
         setCurrentUser,
         searchUser,

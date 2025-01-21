@@ -1,13 +1,14 @@
 import { Helmet } from "react-helmet-async";
-import useData from "../../Hooks/useData";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useData from "../../Hooks/useData";
 
 const Categories = () => {
     const axiosPublic = useAxiosPublic();
     const { setProducts } = useAuth();
     const [data] = useData();
+    
     const categoryData = [...new Set(data.map(d => d.category))];
 
     const handleCategory = (category) => {

@@ -12,7 +12,7 @@ const UpdateProfile = () => {
         const form = e.target;
         const userName = form.userName.value;
         const photo = form.photoURL.value;
-        // console.log(userName, photo);
+
         Swal.fire({
             title: "Are you sure?",
             // text: "You won't be able to revert this!",

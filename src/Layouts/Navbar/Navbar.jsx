@@ -3,12 +3,13 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-    const { user, signOutUser, setUser } = useAuth();
+    const { user, signOutUser, setUser, currentUser,setCurrentUser } = useAuth();
 
     const handleLogOut = () => {
         signOutUser()
             .then(() => {
                 setUser(null);
+                setCurrentUser(null);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -71,12 +72,12 @@ const Navbar = () => {
                 </div>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        {user ? <div>
+                        {currentUser ? <div>
                             <div className="w-10 h-10 rounded-full">
                                 <img className="w-full h-full rounded-full object-cover"
-                                    title={user?.displayName}
+                                    title={currentUser?.displayName}
                                     alt="Tailwind CSS Navbar component"
-                                    src={user?.photoURL} />
+                                    src={currentUser?.photoURL} />
                             </div>
                         </div> :
                             <div className="w-10 rounded-full">

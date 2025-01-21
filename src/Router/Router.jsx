@@ -71,6 +71,11 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><AdminRoute><UpdateProduct /></AdminRoute></PrivateRoute>
       },
       {
+        path: '/dashboard/update_product/:_id',
+        loader: ({params}) => fetch(`http://localhost:2100/product/${params._id}`),
+        element: <PrivateRoute><AdminRoute><UpdateProduct /></AdminRoute></PrivateRoute>
+      },
+      {
         path: '/dashboard/all_user',
         element: <PrivateRoute><AdminRoute><AllUser /></AdminRoute></PrivateRoute>
       },

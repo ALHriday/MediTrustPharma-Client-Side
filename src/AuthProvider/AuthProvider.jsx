@@ -2,7 +2,6 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Auth/firebase.init";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-// import axios from "axios";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types
@@ -15,7 +14,6 @@ const AuthProvider = ({ children }) => {
     const [showPass, setShowPass] = useState(false);
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
-    // const [allUser, setAllUser] = useState([]);
     const [currentUser, setCurrentUser] = useState([]);
     const [searchUser, setSearchUser] = useState([]);
     const [images, setImages] = useState([]);
@@ -96,8 +94,6 @@ const AuthProvider = ({ children }) => {
         setProducts,
         search,
         setSearch,
-        // allUser,
-        // setAllUser,
         currentUser,
         setCurrentUser,
         searchUser,

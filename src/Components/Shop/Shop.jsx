@@ -1,13 +1,72 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Shop = () => {
 
-    const { products, setSearch } = useAuth();
+    const { products, setProducts, setSearch } = useAuth();
     // const [showModal, setShowModal] = useState(false);
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
+
+    const handleShowDetails = (product) => {
+
+        Swal.fire({
+            html: `<div className="flex flex-col justify-center items-center p-2 gap-2">
+        <div className="h-32">
+            <img className="w-full h-full" src="${product.image}" />
+        </div>
+        <div>
+            <h1>${product.title}</h1>
+            <p>${product.price}</p>
+        </div>
+
+    </div>`,
+        });
+    }
+
+    // <div className="flex justify-center items-center p-2">
+    //     <div className="h-40">
+    //         <img src={product.image} alt="" />
+    //     </div>
+    //     <div>
+    //         <h1>${product.title}</h1>
+    //         <p>${ product.price}</p>
+    //     </div>
+
+    // </div>
+
+    const handleDeleteProduct = (id) => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosPublic.delete(`/product/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            const remainingProduct = products.filter(p => p._id !== id);
+                            setProducts(remainingProduct);
+                        }
+                    }
+                    )
+            }
+        });
+    }
 
     return (
         <div className="w-full">
@@ -72,10 +131,10 @@ const Shop = () => {
                             <td>{product.description}</td>
                             <td>
                                 <div className="flex gap-2 justify-center items-center">
-                                    <button className="btn btn-sm btn-accent text-white"><FaEye></FaEye></button>
+                                    <button onClick={() => handleShowDetails(product)} className="btn btn-sm btn-accent text-white"><FaEye></FaEye></button>
                                     {location.pathname == '/dashboard' ? <>
-                                        <button className="btn btn-sm btn-secondary"> <FaEdit></FaEdit> </button>
-                                        <button className="btn btn-sm bg-red-600 text-white"> <FaTrash></FaTrash> </button>
+                                        <Link to={`/dashboard/update_product/${product._id}`} className="btn btn-sm btn-secondary"> <FaEdit></FaEdit> </Link>
+                                        <button onClick={() => handleDeleteProduct(product._id)} className="btn btn-sm bg-red-600 text-white"> <FaTrash></FaTrash> </button>
                                     </> : <button className="btn btn-sm btn-secondary">Select</button>}
 
                                 </div>

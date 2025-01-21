@@ -3,6 +3,7 @@ import useAuth from "../Hooks/useAuth";
 import { FaProductHunt, FaUser, FaUsers } from "react-icons/fa";
 
 const Dashboard = () => {
+    
     const { currentUser } = useAuth();
 
     return (

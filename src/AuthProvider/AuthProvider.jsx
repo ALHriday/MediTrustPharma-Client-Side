@@ -53,7 +53,10 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         if (user) {
             axiosPublic.get(`/users/${user?.email}`)
-            .then(res => setCurrentUser(res.data)
+                .then(res => {
+                    setCurrentUser(res.data);
+                    setLoading(false);
+                }
             ) 
         }   
     }, [axiosPublic, user]);
@@ -61,7 +64,10 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         axiosPublic.get(`/products?title=${search}`)
-            .then(res => setProducts(res.data)
+            .then(res => {
+                setProducts(res.data);
+                setLoading(false);
+            }
             )
     }, [axiosPublic, search]);
 

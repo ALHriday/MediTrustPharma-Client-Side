@@ -4,6 +4,7 @@ import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { GiDatabase } from "react-icons/gi";
 
 const Shop = () => {
 
@@ -74,8 +75,8 @@ const Shop = () => {
                 <title>MediTrust | Shop</title>
             </Helmet>
 
-            <div className={` ${location.pathname == '/dashboard' ? "top-[0px] justify-between" : "top-[66px] justify-center"} sticky  shadow-sm bg-slate-50 z-10 flex gap-2 items-center py-4`}>
-                <div>
+            <div className={` ${location.pathname == '/dashboard' ? "top-[0px] justify-between" : "top-[66px] justify-center"} sticky shadow-sm bg-slate-50 z-10 flex gap-2 items-center py-4`}>
+                <div className="hidden md:flex">
 
                 </div>
                 <label className="input input-bordered flex items-center gap-2">
@@ -91,9 +92,8 @@ const Shop = () => {
                             clipRule="evenodd" />
                     </svg>
                 </label>
-                <div className="pr-4"> {location.pathname == '/dashboard' ? <p> Total Products: {products.length}</p> : ''} </div>
+                <div className="pr-4 font-bold"> {location.pathname == '/dashboard' ? <p className="inline-flex justify-center items-center text-2xl font-bold"> <GiDatabase></GiDatabase> {products.length < 10 ? `0${products.length}` : `${products.length}`}</p> : ''}  </div>
             </div>
-
 
             <div className="overflow-x-auto">
                 <table className="table">

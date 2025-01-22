@@ -114,7 +114,7 @@ const AllUser = () => {
                             </td>
                             <td>
                                 <div onClick={() => handleDeleteUser(user._id)} className="flex gap-2 justify-center items-center">
-                                    <button className="btn btn-sm bg-red-600 hover:bg-red-500 text-slate-100">Delete</button>
+                                    <button className={`btn btn-sm bg-red-600 hover:bg-red-500 text-slate-100`}>Delete</button>
                                 </div>
 
                             </td>

@@ -16,6 +16,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import Cart from "../Components/Cart/Cart";
 import AllUser from "../Dashboard/AllUser";
 import BannerImage from "../Dashboard/BannerImage";
+import AddProductCategory from "../Dashboard/AddProductCategory";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/banner_image',
         element: <PrivateRoute><AdminRoute><BannerImage /></AdminRoute></PrivateRoute>
+      },
+      {
+        path: '/dashboard/product_category',
+        element: <PrivateRoute><AdminRoute><AddProductCategory /></AdminRoute></PrivateRoute>
       },
     ]
   },

@@ -9,7 +9,7 @@ const UpdateProduct = () => {
     // const {  setSearch } = useAuth();
     const data = useLoaderData();
 
-    const { _id, title, image, price, description, category } = data || {};
+    const { _id, title, image, price, description, category, quantity } = data || {};
 
     const HandleUpdateProduct = (e) => {
         e.preventDefault();
@@ -17,6 +17,7 @@ const UpdateProduct = () => {
 
         const title = form.title.value;
         const price = form.price.value;
+        const quantity = form.quantity.value;
         const category = form.category.value;
         const image = form.image.value;
         const description = form.description.value;
@@ -24,6 +25,7 @@ const UpdateProduct = () => {
         const productInfo = {
             title,
             price,
+            quantity,
             category,
             image,
             description
@@ -60,6 +62,10 @@ const UpdateProduct = () => {
                     <div>
                         <label className="">Price</label>
                         <input type="text" defaultValue={price} name="price" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required />
+                    </div>
+                    <div>
+                        <label className="">Quantity</label>
+                        <input type="text" defaultValue={quantity} name="quantity" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required />
                     </div>
                     <div>
                         <label className="">PhotoURL</label>

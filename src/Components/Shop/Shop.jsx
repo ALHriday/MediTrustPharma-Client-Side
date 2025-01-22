@@ -16,29 +16,21 @@ const Shop = () => {
     const handleShowDetails = (product) => {
 
         Swal.fire({
-            html: `<div className="flex flex-col justify-center items-center p-2 gap-2">
-        <div className="h-32">
-            <img className="w-full h-full" src="${product.image}" />
+            html: `<div class="flex flex-col justify-center items-center p-2 gap-2">
+        <div class="h-40">
+            <img class="w-full h-full object-cover" src="${product?.image}" />
         </div>
-        <div>
-            <h1>${product.title}</h1>
-            <p>${product.price}</p>
+        <div class="flex flex-col gap-1">
+            <h1 class="font-bold">${product?.title}</h1>
+            <p>$${product?.price}</p>
+            <p>Quantity: ${product?.quantity}</p>
+            <p>${product?.description}</p>
         </div>
 
-    </div>`,
+    </div>`
         });
     }
 
-    // <div className="flex justify-center items-center p-2">
-    //     <div className="h-40">
-    //         <img src={product.image} alt="" />
-    //     </div>
-    //     <div>
-    //         <h1>${product.title}</h1>
-    //         <p>${ product.price}</p>
-    //     </div>
-
-    // </div>
 
     const handleDeleteProduct = (id) => {
 
@@ -102,7 +94,7 @@ const Shop = () => {
                         <tr>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Description</th>
+                            <th>Quantity</th>
                             <th className="text-center">Details / Cart</th>
                         </tr>
                     </thead>
@@ -128,7 +120,7 @@ const Shop = () => {
                             <td>
                                 ${product.price}
                             </td>
-                            <td>{product.description}</td>
+                            <td>{product?.quantity}</td>
                             <td>
                                 <div className="flex gap-2 justify-center items-center">
                                     <button onClick={() => handleShowDetails(product)} className="btn btn-sm btn-accent text-white"><FaEye></FaEye></button>
@@ -138,17 +130,13 @@ const Shop = () => {
                                     </> : <button className="btn btn-sm btn-secondary">Select</button>}
 
                                 </div>
-
                             </td>
-
                         </tr>)}
-
 
                     </tbody>
                     {/* foot */}
                     <tfoot>
                         <tr>
-                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

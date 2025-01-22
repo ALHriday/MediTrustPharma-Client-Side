@@ -22,6 +22,7 @@ const Dashboard = () => {
                         <Link className="btn " to='/dashboard'> <GiDatabase></GiDatabase> Products</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                         <Link className="btn " to='/dashboard/banner_image'>Banner Image Update</Link>
+                        <Link className="btn " to='/dashboard/product_category'>Add Product Category</Link>
                     </> : <>
                         <Link className="btn " to='/dashboard/add_product'> My Product</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>

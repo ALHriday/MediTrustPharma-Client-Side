@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Auth/firebase.init";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { toast, ToastContainer } from "react-toastify";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types
@@ -17,6 +18,7 @@ const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState([]);
     const [searchUser, setSearchUser] = useState([]);
     const [images, setImages] = useState([]);
+    const [cartItem, setCartItem] = useState([]);
 
     
     const axiosPublic = useAxiosPublic();
@@ -49,6 +51,8 @@ const AuthProvider = ({ children }) => {
             setShowPass(false);
         }
     }
+
+    const notify = (text) => toast(text);
 
     useEffect(() => {
         if (user) {
@@ -105,12 +109,16 @@ const AuthProvider = ({ children }) => {
         searchUser,
         setSearchUser,
         images,
-        setImages
+        setImages,
+        cartItem,
+        setCartItem,
+        notify
 
     }
 
     return (
         <AuthContext.Provider value={values}>
+            <ToastContainer/>
             {children}
         </AuthContext.Provider>
     );

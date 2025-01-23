@@ -17,7 +17,8 @@ createRoot(document.getElementById('root')).render(
       <HelmetProvider>
         <div className='max-w-7xl mx-auto scroll-smooth'>
           <AuthProvider>
-            <RouterProvider router={router}></RouterProvider>
+            <RouterProvider router={router}>
+            </RouterProvider>
           </AuthProvider>
         </div>
       </HelmetProvider>

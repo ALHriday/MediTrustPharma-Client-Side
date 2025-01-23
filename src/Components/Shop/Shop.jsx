@@ -5,13 +5,26 @@ import { Link, useLocation } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { GiDatabase } from "react-icons/gi";
+import { useEffect } from "react";
 
 const Shop = () => {
 
-    const { products, setProducts, setSearch } = useAuth();
+    const { products, setProducts, setSearch,cartItem, setCartItem, notify } = useAuth();
     // const [showModal, setShowModal] = useState(false);
     const location = useLocation();
     const axiosPublic = useAxiosPublic();
+
+
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cartItem')
+        if (storedCart) {
+            setCartItem(JSON.parse(storedCart));
+        }
+    }, [setCartItem])
+    
+    useEffect(() => {
+        localStorage.setItem('cartItem', JSON.stringify(cartItem))
+    },[cartItem])
 
     const handleShowDetails = (product) => {
 
@@ -59,6 +72,17 @@ const Shop = () => {
                     )
             }
         });
+    }
+
+    const handleAddToCart = (productItem, id) => {
+        const currentProduct = cartItem.find(p => id === p._id);
+
+        if (currentProduct) {
+           return notify(`${productItem.title} already Exist.`);      
+        }
+        
+        setCartItem([...cartItem, productItem]);  
+        notify(`${productItem.title} added to Cart`);
     }
 
     return (
@@ -127,7 +151,7 @@ const Shop = () => {
                                     {location.pathname == '/dashboard' ? <>
                                         <Link to={`/dashboard/update_product/${product._id}`} className="btn btn-sm btn-secondary"> <FaEdit></FaEdit> </Link>
                                         <button onClick={() => handleDeleteProduct(product._id)} className="btn btn-sm bg-red-600 text-white"> <FaTrash></FaTrash> </button>
-                                    </> : <button className="btn btn-sm btn-secondary">Select</button>}
+                                    </> : <button onClick={() =>handleAddToCart(product, product._id)} className="btn btn-sm btn-secondary">Select</button>}
 
                                 </div>
                             </td>

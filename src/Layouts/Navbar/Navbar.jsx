@@ -3,7 +3,10 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-    const { user, signOutUser, setUser, currentUser,setCurrentUser } = useAuth();
+    const { user, signOutUser, setUser, currentUser, setCurrentUser, cartItem } = useAuth();
+    
+    const totalPrice = cartItem.reduce((current, item) => current + parseInt(item.price) , 0);
+
 
     const handleLogOut = () => {
         signOutUser()
@@ -54,7 +57,7 @@ const Navbar = () => {
                                     strokeWidth="2"
                                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
-                            <span className="badge badge-sm indicator-item">8</span>
+                            <span className="badge badge-sm indicator-item">{ cartItem.length}</span>
                         </div>
                     </div>
 
@@ -62,10 +65,10 @@ const Navbar = () => {
                         tabIndex={0}
                         className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
                         <div className="card-body">
-                            <span className="text-lg font-bold">8 Items</span>
-                            <span className="text-info">Subtotal: $999</span>
+                            <span className="text-lg font-bold">{cartItem.length} Items</span>
+                            <span className="text-info">Subtotal: ${ totalPrice}</span>
                             <div className="card-actions">
-                                <Link to='/cart' className="btn btn-primary btn-block">View cart</Link>
+                                <Link to='/cart' className="btn btn-accent btn-block">View cart</Link>
                             </div>
                         </div>
                     </div>

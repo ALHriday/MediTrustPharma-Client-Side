@@ -38,7 +38,7 @@ const BannerImage = () => {
     return (
         <section className="max-w-4xl p-6 mx-auto rounded-md shadow-md bg-opacity-20 my-4">
             <h2 className="text-lg font-semibold capitalize mb-2">Current Banner</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-1 md:gap-2">
                 <div className="w-full h-full">
                     <img className="rounded-md h-full object-cover" src={image1} alt="" />
                 </div>

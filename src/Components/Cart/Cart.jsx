@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Cart = () => {
@@ -81,13 +82,15 @@ const Cart = () => {
                     </tfoot>
                 </table>
             </div>
-            <div className="px-4">
-                <div className="flex justify-end items-center gap-2">
+            <div className="px-4 pb-2 border-b-2">
+                <div className="flex justify-end items-center gap-4">
                     {cartItem.length ? <>
-                        <p className="text-[12px] md:text-[16px] text-black font-bold">
+                        <p className="text-[20px] md:text-[24px] text-black">
                             SubTotal: ${totalPrice}
                         </p>
-                        <button className="btn btn-accent">Pay</button>
+                        <Link to='/payment'>
+                            <button className="btn btn-accent font-bold">Pay</button>
+                        </Link>
                     </>
                         : <> </>}
                 </div>

@@ -10,7 +10,7 @@ const Categories = () => {
     const { setProducts } = useAuth();
     const [categoryData] = useCategoryData();
 
-    const data = [...categoryData].slice(0, 6);
+    const data = [...categoryData].slice(0, 9);
 
     const handleCategorySearch = (category) => {
         axiosPublic.get(`/products/${category}`)
@@ -27,17 +27,15 @@ const Categories = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {data && data.map((d, i) => <Link to='/shop' onClick={() => handleCategorySearch(d.categoryName)} className="text-black relative" key={i}>
-                    <div className="h-[120px] rounded-md">
-                        <img className="object-cover w-full h-full rounded-md opacity-80" src={d.categoryImage} alt="" />
+                    <div className="h-[120px] rounded-md shadow-inner">
+                        <img className="object-cover w-full h-full rounded-md opacity-70" src={d.categoryImage} alt="" />
                     </div>
                     <div className="absolute top-[35%] left-[25%] md:left-[35%]">
-                        <h1 className="font-bold text-2xl">{d.categoryName}</h1>
+                        <h1 className="font-bold text-xl  bg-slate-50 opacity-85 shadow-inner p-2 rounded-md">{d.categoryName}</h1>
                     </div>
                 </Link>
                 )}
             </div>
-
-
         </div>
     );
 };

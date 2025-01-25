@@ -135,9 +135,6 @@ const AllUser = () => {
                     </tfoot>
                 </table>
             </div>
-
-
-
         </div >
     );
 };

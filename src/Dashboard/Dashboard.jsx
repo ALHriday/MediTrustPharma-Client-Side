@@ -20,6 +20,7 @@ const Dashboard = () => {
                     {currentUser.role == 'admin' ? <>
                         <Link className="btn " to='/dashboard/all_user'><FaUsers className="text-teal-500 "></FaUsers>All User</Link>
                         <Link className="btn " to='/dashboard'> <GiDatabase></GiDatabase> Products</Link>
+                        <Link className="btn " to='/dashboard/paymentHistory'> PaymentHistory</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                         <Link className="btn " to='/dashboard/banner_image'>Update Banner Image</Link>
                         <Link className="btn " to='/dashboard/product_category'>Change Product Category</Link>

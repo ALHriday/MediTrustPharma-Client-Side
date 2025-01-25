@@ -17,6 +17,8 @@ import Cart from "../Components/Cart/Cart";
 import AllUser from "../Dashboard/AllUser";
 import BannerImage from "../Dashboard/BannerImage";
 import AddProductCategory from "../Dashboard/AddProductCategory";
+import Payment from "../Components/Payment/Payment";
+import PaymentHistory from "../Dashboard/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +54,10 @@ export const router = createBrowserRouter([
         path: '/cart',
         element: <Cart></Cart>
       },
+      {
+        path: 'payment',
+        element: <Payment/>
+      }
     ]
   },
   {
@@ -79,6 +85,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/all_user',
         element: <PrivateRoute><AdminRoute><AllUser /></AdminRoute></PrivateRoute>
+      },
+      {
+        path: '/dashboard/paymentHistory',
+        element: <PrivateRoute><AdminRoute><PaymentHistory /></AdminRoute></PrivateRoute>
       },
       {
         path: '/dashboard/banner_image',

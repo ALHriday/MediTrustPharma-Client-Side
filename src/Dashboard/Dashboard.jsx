@@ -4,7 +4,7 @@ import { FaUser, FaUsers } from "react-icons/fa";
 import { GiDatabase } from "react-icons/gi";
 
 const Dashboard = () => {
-    
+
     const { currentUser } = useAuth();
 
     return (
@@ -17,15 +17,16 @@ const Dashboard = () => {
                     <h1 className="text-2xl md:text-xl font-bold mb-4 ">MediTrustPharma</h1>
                 </div>
                 <div className="flex flex-wrap md:flex-col gap-2 overflow-x-auto">
-                    {currentUser.role == 'admin' ? <>
+                    {currentUser.role == 'admin' && <>
                         <Link className="btn " to='/dashboard/all_user'><FaUsers className="text-teal-500 "></FaUsers>All User</Link>
                         <Link className="btn " to='/dashboard'> <GiDatabase></GiDatabase> Products</Link>
                         <Link className="btn " to='/dashboard/paymentHistory'> PaymentHistory</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                         <Link className="btn " to='/dashboard/banner_image'>Update Banner Image</Link>
                         <Link className="btn " to='/dashboard/product_category'>Change Product Category</Link>
-                    </> : <>
-                        <Link className="btn " to='/dashboard/add_product'> My Product</Link>
+                    </>}
+                    {currentUser.role == 'seller' && <>
+                        <Link className="btn " to='/dashboard'> My Product</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                     </>}
                 </div>
@@ -43,7 +44,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="px-4 overflow-auto max-h-screen">
-                    <Outlet></Outlet>
+                    {(currentUser.role == 'seller' || currentUser.role == 'admin') && <Outlet></Outlet>}                 
                 </div>
             </div>
         </div>

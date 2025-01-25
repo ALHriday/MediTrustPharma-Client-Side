@@ -45,6 +45,23 @@ const AllUser = () => {
         });
     }
 
+    const handleUpdateUser = (value, id) => {
+
+        const userInfo = {role: value};
+        if (value !== 'select') {
+            axiosPublic.put(`/user/${id}`, userInfo)
+                .then(res => {
+                    if (res.data.modifiedCount > 0) {
+                        Swal.fire({
+                            title: "Updated!",
+                            text: "User Role Updated.",
+                            icon: "success"
+                        });
+                        refetch();
+                    }      
+            })
+        }     
+    }
 
     return (
         <div className="w-full">
@@ -105,7 +122,7 @@ const AllUser = () => {
                             <td>{user.role}</td>
                             <td className="w-[120px]">
                                 {user.status}
-                                <select className="select select-bordered select-sm w-full max-w-xs">
+                                <select onClick={(e) =>handleUpdateUser (e.target.value, user._id)} className="select select-bordered select-sm w-full max-w-xs">
                                     <option value='select'>Select</option>
                                     <option value='user'>User</option>
                                     <option value='seller'>Seller</option>

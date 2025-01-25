@@ -1,20 +1,17 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-// import useData from "../../Hooks/useData";
 import useCategoryData from "../../Hooks/useCategoryData";
 
 const Categories = () => {
-    const axiosPublic = useAxiosPublic();
-    const { setProducts } = useAuth();
+    // const axiosPublic = useAxiosPublic();
+    const {  setCategory } = useAuth();
     const [categoryData] = useCategoryData();
 
     const data = [...categoryData].slice(0, 9);
 
     const handleCategorySearch = (category) => {
-        axiosPublic.get(`/products/${category}`)
-            .then(res => setProducts(res.data))
+        setCategory(category);
     }
 
     return (

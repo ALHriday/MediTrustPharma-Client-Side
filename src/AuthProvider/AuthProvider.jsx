@@ -19,8 +19,10 @@ const AuthProvider = ({ children }) => {
     const [searchUser, setSearchUser] = useState([]);
     const [images, setImages] = useState([]);
     const [cartItem, setCartItem] = useState([]);
+    const [category, setCategory] = useState('');
+    // const [sellerProducts, setSellerProducts] = useState([]);
 
-    
+
     const axiosPublic = useAxiosPublic();
 
     const signInWithGoogle = () => {
@@ -61,21 +63,29 @@ const AuthProvider = ({ children }) => {
                     setCurrentUser(res.data);
                     setLoading(false);
                 }
-            ) 
-        }   
+                )
+        }
     }, [axiosPublic, user]);
 
 
     useEffect(() => {
-        axiosPublic.get(`/products?title=${search}`)
-            .then(res => {
-                setProducts(res.data);
-                setLoading(false);
-            }
-            )
-    }, [axiosPublic, search]);
+        if (category) {
+            axiosPublic.get(`products/${category}`).then(res => setProducts(res.data))
+        }
+    }, [axiosPublic, category])
 
+    useEffect(() => {
+        if (search) {
+            axiosPublic.get(`products?title=${search}`).then(res => setProducts(res.data))
+        } else {
+            axiosPublic.get(`products`).then(res => setProducts(res.data))
+        }
+    }, [axiosPublic, search])
 
+    // useEffect(() => {
+    //     axiosPublic.get(`/productItem/${currentUser?.userEmail}`)
+    //     .then(res => setSellerProducts(res.data))
+    // }, [axiosPublic, currentUser?.userEmail])
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -112,13 +122,17 @@ const AuthProvider = ({ children }) => {
         setImages,
         cartItem,
         setCartItem,
-        notify
+        notify,
+        category,
+        setCategory,
+        // sellerProducts,
+        // setSellerProducts
 
     }
 
     return (
         <AuthContext.Provider value={values}>
-            <ToastContainer/>
+            <ToastContainer />
             {children}
         </AuthContext.Provider>
     );

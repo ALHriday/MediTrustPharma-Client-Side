@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import { FaUser, FaUsers } from "react-icons/fa";
+import { FaStackOverflow, FaUser, FaUsers } from "react-icons/fa";
 import { GiDatabase } from "react-icons/gi";
 
 const Dashboard = () => {
@@ -18,15 +18,17 @@ const Dashboard = () => {
                 </div>
                 <div className="flex flex-wrap md:flex-col gap-2 overflow-x-auto">
                     {currentUser.role == 'admin' && <>
+                        <Link className="btn " to='/dashboard'><FaStackOverflow className="text-teal-500 "></FaStackOverflow>Admin Home</Link>
                         <Link className="btn " to='/dashboard/all_user'><FaUsers className="text-teal-500 "></FaUsers>All User</Link>
-                        <Link className="btn " to='/dashboard'> <GiDatabase></GiDatabase> Products</Link>
+                        <Link className="btn " to='/dashboard/shop'> <GiDatabase></GiDatabase> Products</Link>
                         <Link className="btn " to='/dashboard/paymentHistory'> PaymentHistory</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                         <Link className="btn " to='/dashboard/banner_image'>Update Banner Image</Link>
                         <Link className="btn " to='/dashboard/product_category'>Change Product Category</Link>
                     </>}
                     {currentUser.role == 'seller' && <>
-                        <Link className="btn " to='/dashboard'> My Product</Link>
+                        <Link className="btn " to='/dashboard'> Seller Home</Link>
+                        <Link className="btn " to='/dashboard/shop'> My Product</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                     </>}
                 </div>
@@ -44,7 +46,15 @@ const Dashboard = () => {
                 </div>
 
                 <div className="px-4 overflow-auto max-h-screen">
-                    {(currentUser.role == 'seller' || currentUser.role == 'admin') && <Outlet></Outlet>}                 
+                    {(currentUser.role == 'seller' || currentUser.role == 'admin') ? <Outlet></Outlet> :
+                        <div className="flex flex-col justify-center items-center gap-4 py-12">
+                            <h1 className="text-2xl text-center">If you want to be a seller, please contact our customer care and fulfill our requirements. Thank You.</h1>
+                            <div className="flex flex-col md:flex-row gap-2">
+                                <button className="btn btn-sm btn-primary text-white">Call: +8801234567892</button>
+                                <button className="btn btn-sm btn-primary text-white">Email: Example123@gmail.com</button>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

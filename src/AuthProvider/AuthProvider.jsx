@@ -20,7 +20,6 @@ const AuthProvider = ({ children }) => {
     const [images, setImages] = useState([]);
     const [cartItem, setCartItem] = useState([]);
     const [category, setCategory] = useState('');
-    // const [sellerProducts, setSellerProducts] = useState([]);
 
 
     const axiosPublic = useAxiosPublic();

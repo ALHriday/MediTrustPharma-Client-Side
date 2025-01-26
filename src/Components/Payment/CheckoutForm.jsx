@@ -90,13 +90,14 @@ const CheckoutForm = () => {
                 } else {
                     setCartItem([]);
                     navigate('/');
-                    const userEmail = currentUser?.userEmail;
-                    const userName = currentUser?.userName;
+                    const buyerEmail = currentUser?.userEmail;
+                    const buyerName = currentUser?.userName;
                     const transactionId = paymentIntent?.id;
                     const status = paymentIntent?.status;
                     const price = totalPrice;
+                    // 
 
-                    const paymentInfo = { userEmail, userName, transactionId, price, status };
+                    const paymentInfo = { buyerEmail, buyerName, transactionId, price, status };
 
                     axiosPublic.post('/payments', paymentInfo)
                         .then(res => {

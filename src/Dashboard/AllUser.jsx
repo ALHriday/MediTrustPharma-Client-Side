@@ -45,11 +45,12 @@ const AllUser = () => {
         });
     }
 
-    const handleUpdateUser = (value, id) => {
+    const handleUpdateUser = (value, user) => {
 
-        const userInfo = {role: value};
+        const userInfo = { role: value, sellerEmail: user.userEmail, sellerName: user.userName };
+        const userRole = { role: value, sellerEmail: '', sellerName: '' }
         if (value !== 'select') {
-            axiosPublic.put(`/user/${id}`, userInfo)
+            axiosPublic.put(`/user/${user._id}`, value === 'user' ? userRole : userInfo)
                 .then(res => {
                     if (res.data.modifiedCount > 0) {
                         Swal.fire({
@@ -58,9 +59,9 @@ const AllUser = () => {
                             icon: "success"
                         });
                         refetch();
-                    }      
-            })
-        }     
+                    }
+                })
+        }
     }
 
     return (
@@ -122,7 +123,7 @@ const AllUser = () => {
                             <td>{user.role}</td>
                             <td className="w-[120px]">
                                 {user.status}
-                                <select onClick={(e) =>handleUpdateUser (e.target.value, user._id)} className="select select-bordered select-sm w-full max-w-xs">
+                                <select onClick={(e) => handleUpdateUser(e.target.value, user)} className="select select-bordered select-sm w-full max-w-xs">
                                     <option value='select'>Select</option>
                                     <option value='user'>User</option>
                                     <option value='seller'>Seller</option>

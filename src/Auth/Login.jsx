@@ -24,7 +24,7 @@ const Login = () => {
                     const userEmail = user.email;
                     const photoURL = user.photoURL;
 
-                    const userInfo = { userName, userEmail, photoURL, role: 'user', status: '' };
+                    const userInfo = { userName, userEmail, photoURL, role: 'user', status: '', sellerEmail: '', sellerName: '' };
 
                     axios.post(`http://localhost:2100/users`, userInfo).then(res => {
                         if (res.data.insertedId) {

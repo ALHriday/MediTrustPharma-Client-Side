@@ -91,14 +91,15 @@ const Shop = () => {
         notify(`${productItem.title} added to Cart`);
     }
 
+
     return (
         <div className="w-full">
             <Helmet>
                 <title>MediTrust | Shop</title>
             </Helmet>
-            {currentUser?.role == 'seller' && location.pathname == '/dashboard' ?
+            {currentUser?.role == 'seller' && location.pathname == '/dashboard/shop' ?
                     <> </> : <>
-            <div className={` ${location.pathname == '/dashboard' ? "top-[0px] justify-between" : "top-[66px] justify-center"} sticky shadow-sm bg-slate-50 z-10 flex gap-2 items-center py-4`}>
+            <div className={` ${location.pathname == '/dashboard/shop' ? "top-[0px] justify-between" : "top-[66px] justify-center"} sticky shadow-sm bg-slate-50 z-10 flex gap-2 items-center py-4`}>
                 
                 <div className="hidden md:flex">
 
@@ -116,7 +117,7 @@ const Shop = () => {
                             clipRule="evenodd" />
                     </svg>
                 </label>
-                <div className="pr-4 font-bold"> {location.pathname == '/dashboard' ? <p className="inline-flex justify-center items-center text-2xl font-bold"> <GiDatabase></GiDatabase> {products.length < 10 ? `0${products.length}` : `${products.length}`}</p> : ''}  </div>
+                <div className="pr-4 font-bold"> {location.pathname == '/dashboard/shop' ? <p className="inline-flex justify-center items-center text-2xl font-bold"> <GiDatabase></GiDatabase> {products.length < 10 ? `0${products.length}` : `${products.length}`}</p> : ''}  </div>
                 </div>
             </>}
 
@@ -134,7 +135,7 @@ const Shop = () => {
 
                     <tbody>
                         {/* row 1 */}
-                        {currentUser?.role == 'seller' && location.pathname == '/dashboard' ? <>
+                        {currentUser?.role == 'seller' && location.pathname == '/dashboard/shop' ? <>
 
                             {sellerProducts && sellerProducts.map((product, i) => <tr key={i}>
                                 <td >
@@ -159,7 +160,7 @@ const Shop = () => {
                                 <td>
                                     <div className="flex gap-2 justify-center items-center">
                                         <button onClick={() => handleShowDetails(product)} className="btn btn-sm btn-accent text-white"><FaEye></FaEye></button>
-                                        {location.pathname == '/dashboard' ? <>
+                                        {location.pathname == '/dashboard/shop' ? <>
                                             <Link to={`/dashboard/update_product/${product._id}`} className="btn btn-sm btn-secondary"> <FaEdit></FaEdit> </Link>
                                             <button onClick={() => handleDeleteProduct(product._id)} className="btn btn-sm bg-red-600 text-white"> <FaTrash></FaTrash> </button>
                                         </> : <button onClick={() => handleAddToCart(product, product._id)} className="btn btn-sm btn-secondary">Select</button>}
@@ -192,7 +193,7 @@ const Shop = () => {
                                 <td>
                                     <div className="flex gap-2 justify-center items-center">
                                         <button onClick={() => handleShowDetails(product)} className="btn btn-sm btn-accent text-white"><FaEye></FaEye></button>
-                                        {location.pathname == '/dashboard' ? <>
+                                        {location.pathname == '/dashboard/shop' ? <>
                                             <Link to={`/dashboard/update_product/${product._id}`} className="btn btn-sm btn-secondary"> <FaEdit></FaEdit> </Link>
                                             <button onClick={() => handleDeleteProduct(product._id)} className="btn btn-sm bg-red-600 text-white"> <FaTrash></FaTrash> </button>
                                         </> : <button onClick={() => handleAddToCart(product, product._id)} className="btn btn-sm btn-secondary">Select</button>}

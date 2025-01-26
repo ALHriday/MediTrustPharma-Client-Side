@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: 'https://medi-trust-pharma-server.vercel.app'
+    baseURL: ' https://medi-trust-pharma-server.vercel.app'
 })
 
 // https://medi-trust-pharma-server.vercel.app

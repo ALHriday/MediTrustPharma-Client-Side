@@ -78,7 +78,7 @@ const Navbar = () => {
                         {currentUser ? <div>
                             <div className="w-10 h-10 rounded-full">
                                 <img className="w-full h-full rounded-full object-cover"
-                                    title={currentUser?.displayName}
+                                    title={currentUser?.userName}
                                     alt="Tailwind CSS Navbar component"
                                     src={currentUser?.photoURL} />
                             </div>

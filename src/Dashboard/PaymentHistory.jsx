@@ -19,7 +19,7 @@ const PaymentHistory = () => {
                     </thead>
                     <tbody>
                         {paymentHistory && paymentHistory.map((p, i) => <tr key={i}>
-                            <td>{ i < 10 ? `0${i + 1}` : i + 1}.</td>
+                            <td>{ i < 9 ? `0${i + 1}` : i + 1}.</td>
                             <td>{ p.transactionId}</td>
                             <td>${ p.price}</td>
                             <td>{ p.status}</td>

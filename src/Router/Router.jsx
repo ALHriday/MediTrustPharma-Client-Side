@@ -9,7 +9,6 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import UpdateProfile from "../UpdateProfile/UpdateProfile";
 import Shop from "../Components/Shop/Shop";
 import Dashboard from "../Dashboard/Dashboard";
-// import AdminRoute from "../AdminRoute/AdminRoute";
 import AddProduct from "../Dashboard/AddProduct";
 import UpdateProduct from "../Dashboard/UpdateProduct";
 import AdminRoute from "../AdminRoute/AdminRoute";
@@ -19,6 +18,7 @@ import BannerImage from "../Dashboard/BannerImage";
 import AddProductCategory from "../Dashboard/AddProductCategory";
 import Payment from "../Components/Payment/Payment";
 import PaymentHistory from "../Dashboard/PaymentHistory";
+import AdminHome from "../Dashboard/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +67,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
+        element: <PrivateRoute><AdminHome /></PrivateRoute>
+      },
+      {
+        path: '/dashboard/shop',
         element: <PrivateRoute><Shop /></PrivateRoute>
       },
       {

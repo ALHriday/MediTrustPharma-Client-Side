@@ -27,8 +27,9 @@ const Register = () => {
                     const userName = user.displayName;
                     const userEmail = user.email;
                     const photoURL = user.photoURL;
+                    
 
-                    const userInfo = { userName, userEmail, photoURL, role: 'user', status: '' };
+                    const userInfo = { userName, userEmail, photoURL, role: 'user', status: '',sellerEmail: '', sellerName: '' };
 
                     axiosPublic.post(`/users`, userInfo).then(res => {
                         if (res.data.insertedId) {
@@ -59,7 +60,7 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        const userInfo = { userName: name, userEmail: email, photoURL: photo, role: 'user', status: '' }
+        const userInfo = { userName: name, userEmail: email, photoURL: photo, role: 'user', status: '', sellerEmail: '', sellerName: '' }
 
 
         const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{8,}$/;

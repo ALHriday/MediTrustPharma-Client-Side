@@ -19,6 +19,8 @@ import AddProductCategory from "../Dashboard/AddProductCategory";
 import Payment from "../Components/Payment/Payment";
 import PaymentHistory from "../Dashboard/PaymentHistory";
 import AdminHome from "../Dashboard/AdminHome";
+import InvoicePage from "../Dashboard/InvoicePage";
+// import UserPaymentHistory from "../Dashboard/UserPaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +42,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/categories',
-        element: <PrivateRoute><Categories/></PrivateRoute>
+        element: <Categories/>
       },
       {
         path: '/shop',
@@ -55,9 +57,9 @@ export const router = createBrowserRouter([
         element: <Cart></Cart>
       },
       {
-        path: 'payment',
+        path: '/payment',
         element: <Payment/>
-      }
+      },   
     ]
   },
   {
@@ -69,6 +71,10 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><AdminHome /></PrivateRoute>
       },
+      // {
+      //   path: '/dashboard/userPaymentHistory',
+      //   element: <PrivateRoute><UserPaymentHistory /></PrivateRoute>
+      // },
       {
         path: '/dashboard/shop',
         element: <PrivateRoute><Shop /></PrivateRoute>
@@ -104,4 +110,8 @@ export const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: '/InvoicePage',
+    element: <InvoicePage/>
+  }
 ]);

@@ -2,8 +2,11 @@ import { Link, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { FaStackOverflow, FaUser, FaUsers } from "react-icons/fa";
 import { GiDatabase } from "react-icons/gi";
+import { useState } from "react";
+import UserPaymentHistory from "./UserPaymentHistory";
 
 const Dashboard = () => {
+    const [historyBtn, setHistoryBtn] = useState(false);
 
     const { currentUser } = useAuth();
 
@@ -21,7 +24,7 @@ const Dashboard = () => {
                         <Link className="btn " to='/dashboard'><FaStackOverflow className="text-teal-500 "></FaStackOverflow>Admin Home</Link>
                         <Link className="btn " to='/dashboard/all_user'><FaUsers className="text-teal-500 "></FaUsers>All User</Link>
                         <Link className="btn " to='/dashboard/shop'> <GiDatabase></GiDatabase> Products</Link>
-                        <Link className="btn " to='/dashboard/paymentHistory'> PaymentHistory</Link>
+                        <Link className="btn " to='/dashboard/paymentHistory'>Total PaymentHistory</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                         <Link className="btn " to='/dashboard/banner_image'>Update Banner Image</Link>
                         <Link className="btn " to='/dashboard/product_category'>Change Product Category</Link>
@@ -31,6 +34,9 @@ const Dashboard = () => {
                         <Link className="btn " to='/dashboard/shop'> My Product</Link>
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                     </>}
+                    {/* {currentUser.role == 'user' && <> */}
+                        <button onClick={() => setHistoryBtn (!historyBtn)} className="btn">Payment History</button>
+                    {/* </>} */}
                 </div>
                 <div className="w-full mt-4 md:mt-8">
                     <Link className="btn btn-neutral w-full" to='/'>Go to Home</Link>
@@ -46,7 +52,10 @@ const Dashboard = () => {
                 </div>
 
                 <div className="px-4 overflow-auto max-h-screen">
-                    {(currentUser.role == 'seller' || currentUser.role == 'admin') ? <Outlet></Outlet> :
+                    {currentUser.role !== 'user' &&
+                        <Outlet></Outlet>}
+                    {historyBtn ? <UserPaymentHistory/> : <></> }
+                    {currentUser.role == 'user' &&
                         <div className="flex flex-col justify-center items-center gap-4 py-12">
                             <h1 className="text-2xl text-center">If you want to be a seller, please contact our customer care and fulfill our requirements. Thank You.</h1>
                             <div className="flex flex-col md:flex-row gap-2">

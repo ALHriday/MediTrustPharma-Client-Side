@@ -13,7 +13,7 @@ const CheckoutForm = () => {
     const [error, setError] = useState('');
     const axiosPublic = useAxiosPublic();
 
-    const { currentUser, cartItem, setCartItem } = useAuth();
+    const { currentUser, cartItem, setCartItem, setInvoiceData } = useAuth();
     const totalPrice = cartItem.reduce((current, item) => current + parseInt(item.price), 0);
 
     const navigate = useNavigate();
@@ -26,7 +26,6 @@ const CheckoutForm = () => {
         if (totalPrice > 0) {
             axiosPublic.post('/create-payment-intent', { price: totalPrice })
                 .then(res => {
-                    // console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -52,7 +51,6 @@ const CheckoutForm = () => {
 
         if (error) {
             setError(error);
-            // console.log('[error]', error);
         } else {
             setError('');
         }
@@ -67,6 +65,7 @@ const CheckoutForm = () => {
             }
         })
 
+
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -78,7 +77,6 @@ const CheckoutForm = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 if (confirmError) {
-                    // console.log("confirmError", confirmError);
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
@@ -86,24 +84,26 @@ const CheckoutForm = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    
 
                 } else {
-                    setCartItem([]);
-                    navigate('/');
+                
                     const buyerEmail = currentUser?.userEmail;
                     const buyerName = currentUser?.userName;
                     const transactionId = paymentIntent?.id;
                     const status = paymentIntent?.status;
+                    const payment_method = paymentIntent?.payment_method_types;
+                    const currency = paymentIntent?.currency;
                     const price = totalPrice;
-                    // 
-
-                    const paymentInfo = { buyerEmail, buyerName, transactionId, price, status };
+                    
+                    const paymentInfo = { buyerEmail, buyerName, transactionId, price, status, payment_method, currency };
+                    
+                    setInvoiceData(cartItem);
 
                     axiosPublic.post('/payments', paymentInfo)
                         .then(res => {
                             if (res.data.insertedId) {
-                                refetch();
-                                navigate('/');
+                                refetch;
                                 return res.data;
                             }
                         }
@@ -115,7 +115,8 @@ const CheckoutForm = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-
+                    navigate('/InvoicePage', {state: {paymentIntent}});
+                    setCartItem([]);
                 }
             }
         });

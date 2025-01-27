@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
     const [images, setImages] = useState([]);
     const [cartItem, setCartItem] = useState([]);
     const [category, setCategory] = useState('');
+    const [invoiceData, setInvoiceData] = useState([]);
 
 
     const axiosPublic = useAxiosPublic();
@@ -124,8 +125,8 @@ const AuthProvider = ({ children }) => {
         notify,
         category,
         setCategory,
-        // sellerProducts,
-        // setSellerProducts
+        invoiceData,
+        setInvoiceData
 
     }
 

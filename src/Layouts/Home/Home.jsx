@@ -2,6 +2,7 @@
 import Banner from "../../Components/Banner/Banner";
 import { Helmet } from "react-helmet-async";
 import Categories from "../../Components/Categories/Categories";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (

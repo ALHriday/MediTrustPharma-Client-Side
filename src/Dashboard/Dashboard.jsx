@@ -10,6 +10,20 @@ const Dashboard = () => {
 
     const { currentUser } = useAuth();
 
+    if (currentUser.role == 'user') {
+        
+        {
+            currentUser?.role == 'user' &&
+            <div className="flex flex-col justify-center items-center gap-4 py-12">
+                <h1 className="text-2xl text-center">If you want to be a seller, please contact our customer care and fulfill our requirements. Thank You.</h1>
+                <div className="flex flex-col md:flex-row gap-2">
+                    <button className="btn btn-sm btn-primary text-white">Call: +8801234567892</button>
+                    <button className="btn btn-sm btn-primary text-white">Email: Example123@gmail.com</button>
+                </div>
+            </div>
+        }
+    }
+
     return (
         <div className="grid-cols-1 grid md:grid-cols-4 bg-slate-50">
             <div className="col-span-1 bg-teal-500 bg-opacity-85 p-4 md:min-h-screen">
@@ -35,7 +49,7 @@ const Dashboard = () => {
                         <Link className="btn " to='/dashboard/add_product'> Add Product</Link>
                     </>}
                     {/* {currentUser.role == 'user' && <> */}
-                        <button onClick={() => setHistoryBtn (!historyBtn)} className="btn">Payment History</button>
+                    <button onClick={() => setHistoryBtn(!historyBtn)} className="btn">Payment History</button>
                     {/* </>} */}
                 </div>
                 <div className="w-full mt-4 md:mt-8">
@@ -55,7 +69,7 @@ const Dashboard = () => {
                     {currentUser?.role !== 'user' &&
                         <Outlet></Outlet>}
                     {historyBtn ? <UserPaymentHistory/> : <></> }
-                    {currentUser?.role == 'user' &&
+                    {/* {currentUser?.role == 'user' &&
                         <div className="flex flex-col justify-center items-center gap-4 py-12">
                             <h1 className="text-2xl text-center">If you want to be a seller, please contact our customer care and fulfill our requirements. Thank You.</h1>
                             <div className="flex flex-col md:flex-row gap-2">
@@ -63,7 +77,7 @@ const Dashboard = () => {
                                 <button className="btn btn-sm btn-primary text-white">Email: Example123@gmail.com</button>
                             </div>
                         </div>
-                    }
+                    } */}
                 </div>
             </div>
         </div>

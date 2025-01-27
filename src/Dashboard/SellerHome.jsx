@@ -1,19 +1,20 @@
 import { FaCartPlus, FaDollarSign, FaHome, FaUsers } from "react-icons/fa";
 import useSellerProduct from "../Hooks/useSellerProduct";
 
+
 const SellerHome = () => {
 
     const [sellerProducts] = useSellerProduct();
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 p-4 gap-4">
             <div className="bg-primary rounded-md flex gap-4 md:gap-2 p-4">
                 <div className="flex justify-center items-center">
                     <FaDollarSign className="w-20 h-20 text-2xl font-bold text-white bg-accent p-2 rounded-md shadow-md"></FaDollarSign>
                 </div>
                 <div className="text-white text-xl">
                     <h1 className="font-bold">Revenue</h1>
-                    <p>$2000</p>
+                    <p>00</p>
                 </div>
             </div>
             <div className="bg-primary rounded-md flex gap-4 md:gap-2 p-4">
@@ -22,7 +23,7 @@ const SellerHome = () => {
                 </div>
                 <div className="text-white text-xl">
                     <h1 className="font-bold">Orders</h1>
-                    <p>$2000</p>
+                    <p>00</p>
                 </div>
             </div>
             <div className="bg-primary rounded-md flex gap-4 md:gap-2 p-4">
@@ -40,7 +41,7 @@ const SellerHome = () => {
                 </div>
                 <div className="text-white text-xl">
                     <h1 className="font-bold">Users</h1>
-                    <p>$2000</p>
+                    <p>00</p>
                 </div>
             </div>
 

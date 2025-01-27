@@ -21,7 +21,7 @@ import PaymentHistory from "../Dashboard/PaymentHistory";
 import AdminHome from "../Dashboard/AdminHome";
 import InvoicePage from "../Dashboard/InvoicePage";
 import JoinUs from "../Components/JoinUs/JoinUs";
-// import UserPaymentHistory from "../Dashboard/UserPaymentHistory";
+
 
 export const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/payment',
-        element: <Payment/>
+        element: <PrivateRoute><Payment/></PrivateRoute>
       },
       {
         path: '/joinUs',
@@ -76,10 +76,6 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivateRoute><AdminHome /></PrivateRoute>
       },
-      // {
-      //   path: '/dashboard/userPaymentHistory',
-      //   element: <PrivateRoute><UserPaymentHistory /></PrivateRoute>
-      // },
       {
         path: '/dashboard/shop',
         element: <PrivateRoute><Shop /></PrivateRoute>

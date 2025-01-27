@@ -3,7 +3,7 @@ import useUserPaymentHistory from "../Hooks/useUserPaymentHistory";
 const UserPaymentHistory = () => {
     const [userPaymentHistory, isLoading] = useUserPaymentHistory();
     
-    if (isLoading) {
+    if (!isLoading) {
         return <p className="text-center py-4">Loading...</p>
     }
 

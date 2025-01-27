@@ -10,7 +10,7 @@ const DiscountProduct = () => {
         <div className="my-4">
             <div className="py-6">
                 <h1 className="text-2xl font-bold text-center py-2">Discount Product</h1>
-                <p className="text-4xl font-bold text-center text-teal-500">Up to 30%</p>
+                <p className="text-4xl font-bold text-center text-teal-500">Up to 30% OFF</p>
             </div>
             <Swiper
                 effect={'cards'}

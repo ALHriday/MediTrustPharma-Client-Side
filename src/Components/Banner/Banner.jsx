@@ -4,7 +4,7 @@ const Banner = () => {
     const [images] = useBannerImage();
     
     return (
-        <div>
+        <div className="md:mt-6">
             <div className="carousel w-full max-h-[400px]">
                 <div id="slide1" className="carousel-item relative w-full">
                     <img

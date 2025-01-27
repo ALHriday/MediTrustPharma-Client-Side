@@ -1,8 +1,12 @@
 import useUserPaymentHistory from "../Hooks/useUserPaymentHistory";
 
 const UserPaymentHistory = () => {
-    const [userPaymentHistory] = useUserPaymentHistory();
+    const [userPaymentHistory, isLoading] = useUserPaymentHistory();
     
+    if (isLoading) {
+        return <p className="text-center py-4">Loading...</p>
+    }
+
     return (
         <div>
             <h1 className="text-2xl font-bold p-2">Payment History</h1>
@@ -17,11 +21,11 @@ const UserPaymentHistory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {userPaymentHistory && userPaymentHistory.map((p, i) => <tr key={i}>
+                        {userPaymentHistory && userPaymentHistory.map((p, i) =><tr key={i}>
                             <td>{i < 9 ? `0${i + 1}` : i + 1}.</td>
-                            <td>{p.transactionId}</td>
-                            <td>${p.price}</td>
-                            <td>{p.status}</td>
+                            <td>{p?.transactionId}</td>
+                            <td>${p?.price}</td>
+                            <td>{p?.status}</td>
                         </tr>)}
                     </tbody>
                     <tfoot>

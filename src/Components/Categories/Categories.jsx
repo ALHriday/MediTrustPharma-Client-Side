@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import useCategoryData from "../../Hooks/useCategoryData";
 
 const Categories = () => {
-    // const axiosPublic = useAxiosPublic();
     const {  setCategory } = useAuth();
     const [categoryData] = useCategoryData();
 
@@ -15,12 +14,12 @@ const Categories = () => {
     }
 
     return (
-        <div className="py-6">
+        <div className="py-6 px-4">
             <Helmet>
                 <title>MediTrust | Home</title>
             </Helmet>
 
-            <h1 className="text-4xl font-bold py-4">Medicines</h1>
+            <h1 className="text-4xl font-bold py-4">Product Categories</h1>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {data && data.map((d, i) => <Link to='/shop' onClick={() => handleCategorySearch(d.categoryName)} className="text-black relative" key={i}>

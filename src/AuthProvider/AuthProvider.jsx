@@ -71,21 +71,20 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         if (category) {
             axiosPublic.get(`products/${category}`).then(res => setProducts(res.data))
+            setLoading(false);
         }
     }, [axiosPublic, category])
 
     useEffect(() => {
         if (search) {
             axiosPublic.get(`products?title=${search}`).then(res => setProducts(res.data))
+            setLoading(false);
         } else {
             axiosPublic.get(`products`).then(res => setProducts(res.data))
+            setLoading(false);
         }
     }, [axiosPublic, search])
 
-    // useEffect(() => {
-    //     axiosPublic.get(`/productItem/${currentUser?.userEmail}`)
-    //     .then(res => setSellerProducts(res.data))
-    // }, [axiosPublic, currentUser?.userEmail])
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {

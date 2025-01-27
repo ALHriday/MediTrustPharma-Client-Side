@@ -20,6 +20,7 @@ import Payment from "../Components/Payment/Payment";
 import PaymentHistory from "../Dashboard/PaymentHistory";
 import AdminHome from "../Dashboard/AdminHome";
 import InvoicePage from "../Dashboard/InvoicePage";
+import JoinUs from "../Components/JoinUs/JoinUs";
 // import UserPaymentHistory from "../Dashboard/UserPaymentHistory";
 
 export const router = createBrowserRouter([
@@ -59,7 +60,11 @@ export const router = createBrowserRouter([
       {
         path: '/payment',
         element: <Payment/>
-      },   
+      },
+      {
+        path: '/joinUs',
+        element: <JoinUs/>
+      }
     ]
   },
   {

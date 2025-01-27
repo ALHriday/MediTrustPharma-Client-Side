@@ -52,10 +52,10 @@ const Dashboard = () => {
                 </div>
 
                 <div className="px-4 overflow-auto max-h-screen">
-                    {currentUser.role !== 'user' &&
+                    {currentUser?.role !== 'user' &&
                         <Outlet></Outlet>}
                     {historyBtn ? <UserPaymentHistory/> : <></> }
-                    {currentUser.role == 'user' &&
+                    {currentUser?.role == 'user' &&
                         <div className="flex flex-col justify-center items-center gap-4 py-12">
                             <h1 className="text-2xl text-center">If you want to be a seller, please contact our customer care and fulfill our requirements. Thank You.</h1>
                             <div className="flex flex-col md:flex-row gap-2">

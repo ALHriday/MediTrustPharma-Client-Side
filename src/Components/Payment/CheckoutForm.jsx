@@ -116,6 +116,7 @@ const CheckoutForm = () => {
                         timer: 1500
                     });
                     navigate('/InvoicePage', {state: {paymentIntent}});
+                    localStorage.removeItem('cartItem');
                     setCartItem([]);
                 }
             }
@@ -123,7 +124,7 @@ const CheckoutForm = () => {
     };
 
     return (
-        <div className="w-3/4 md:w-3/5 mx-auto">
+        <div className="w-full p-4 md:w-3/5 mx-auto">
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                 <CardElement className=""
                     options={{
@@ -141,8 +142,8 @@ const CheckoutForm = () => {
                         },
                     }}
                 />
-                <button className="btn btn-sm my-4 btn-accent" type="submit" disabled={!stripe || !clientSecret}>
-                    Pay
+                <button className="btn btn-sm my-4 btn-accent font-bold" type="submit" disabled={!stripe || !clientSecret}>
+                    $ Pay
                 </button>
                 <p className="text-error p-2 text-center">{error}</p>
             </form>

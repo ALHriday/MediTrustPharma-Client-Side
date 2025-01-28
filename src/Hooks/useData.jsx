@@ -7,7 +7,7 @@ const useData = () => {
     const {data: data = [], isLoading } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/products');
+            const res = await axiosPublic.get('/products') || {};
             return res.data;
         }
     });

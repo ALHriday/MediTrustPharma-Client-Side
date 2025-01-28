@@ -1,15 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-// import useAuth from "../Hooks/useAuth";
 
 
 const UpdateProduct = () => {
     const axiosPublic = useAxiosPublic();
-    // const {  setSearch } = useAuth();
     const data = useLoaderData();
 
-    const { _id, title, image, price, description, category, quantity } = data || {};
+    const { _id, title, image, price, description, category, quantity, company, discount } = data || {};
 
     const HandleUpdateProduct = (e) => {
         e.preventDefault();
@@ -81,11 +79,11 @@ const UpdateProduct = () => {
                     </div>
                     <div>
                         <label className="">Company</label>
-                        <input type="text" name="company" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required />
+                        <input type="text" name="company" defaultValue={company}  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required />
                     </div>
                     <div>
                         <label className="">Discount</label>
-                        <input type="number" name="discount" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required />
+                        <input type="number" name="discount" defaultValue={discount} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" required />
                     </div>
                     <div>
                         <label className="">Description</label>

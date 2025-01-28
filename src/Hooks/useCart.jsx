@@ -7,7 +7,7 @@ const useCart = () => {
     const { data: cart = [] } = useQuery({
         queryKey: ['cart'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/products');
+            const res = await axiosPublic.get('/products') || {};
             return res.data;          
         }
     })

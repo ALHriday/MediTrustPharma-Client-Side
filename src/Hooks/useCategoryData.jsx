@@ -6,7 +6,7 @@ const useCategoryData = () => {
     const { data: categoryData = [], refetch } = useQuery({
         queryKey: ['categoryData'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/productCategory');
+            const res = await axiosPublic.get('/productCategory') || {};
             return res.data;
         }
     })

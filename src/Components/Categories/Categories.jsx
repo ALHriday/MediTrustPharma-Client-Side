@@ -26,8 +26,8 @@ const Categories = () => {
                     <div className="h-[120px] rounded-md shadow-inner">
                         <img className="object-cover w-full h-full rounded-md opacity-70" src={d.categoryImage} alt="" />
                     </div>
-                    <div className="absolute top-[35%] left-[25%] md:left-[35%]">
-                        <h1 className="font-bold text-xl  bg-slate-50 opacity-85 shadow-inner p-2 rounded-md">{d.categoryName}</h1>
+                    <div className="absolute top-[35%] left-[25%] sm:left-[35%]">
+                        <h1 className="font-bold text-sm sm:text-xl  bg-slate-50 opacity-85 shadow-inner p-2 rounded-md">{d.categoryName}</h1>
                     </div>
                 </Link>
                 )}

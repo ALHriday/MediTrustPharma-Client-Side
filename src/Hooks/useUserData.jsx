@@ -9,7 +9,7 @@ const useUserData = () => {
     const { data: userData = [], refetch } = useQuery({
         queryKey: ['userData'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/users?userName=${searchUser}`);
+            const res = await axiosPublic.get(`/users?userName=${searchUser}`) || {};
             return res.data;
         }
     });

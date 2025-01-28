@@ -6,7 +6,7 @@ const useBannerImage = () => {
     const {data: images =[], refetch} = useQuery({
         queryKey: ['image'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/bannerImage')
+            const res = await axiosPublic.get('/bannerImage') || {};
             return res.data;
         }
     })

@@ -26,7 +26,7 @@ const Login = () => {
 
                     const userInfo = { userName, userEmail, photoURL, role: 'user', status: '', sellerEmail: '', sellerName: '' };
 
-                    axios.post(`http://localhost:2100/users`, userInfo).then(res => {
+                    axios.post(`https://medi-trust-pharma-server.vercel.app/users`, userInfo).then(res => {
                         if (res.data.insertedId) {
                             return res.data;
                         }

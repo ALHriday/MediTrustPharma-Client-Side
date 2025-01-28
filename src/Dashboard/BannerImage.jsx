@@ -18,7 +18,7 @@ const BannerImage = () => {
 
         const imageData = { image1, image2, image3 };
 
-        axios.put(`http://localhost:2100/bannerImage/${_id}`, imageData)
+        axios.put(`https://medi-trust-pharma-server.vercel.app/bannerImage/${_id}`, imageData)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     refetch();

@@ -90,7 +90,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/update_product/:_id',
-        loader: ({params}) => fetch(`http://localhost:2100/product/${params._id}`),
+        loader: ({params}) => fetch(`https://medi-trust-pharma-server.vercel.app/product/${params._id}`),
         element: <PrivateRoute><UpdateProduct /></PrivateRoute>
       },
       {

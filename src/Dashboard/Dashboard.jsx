@@ -10,7 +10,7 @@ const Dashboard = () => {
 
     const { currentUser } = useAuth();
 
-    if (currentUser.role == 'user') {
+    if (currentUser?.role == 'user') {
         
         {
             currentUser?.role == 'user' &&

@@ -38,6 +38,7 @@ const Shop = () => {
             <h1 class="font-bold">${product?.title}</h1>
             <p>$${product?.price}</p>
             <p>Quantity: ${product?.quantity}</p>
+            <p>Company: ${product?.company}</p>
             <p>${product?.description}</p>
         </div>
 

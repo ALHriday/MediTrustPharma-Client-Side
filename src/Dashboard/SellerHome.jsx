@@ -1,4 +1,4 @@
-import { FaCartPlus, FaDollarSign, FaHome, FaUsers } from "react-icons/fa";
+import { FaCartPlus, FaDollarSign, FaHome } from "react-icons/fa";
 import useSellerProduct from "../Hooks/useSellerProduct";
 
 
@@ -35,16 +35,7 @@ const SellerHome = () => {
                     <p>{ sellerProducts.length < 10 ? `0${sellerProducts.length}` : sellerProducts.length}</p>
                 </div>
             </div>
-            <div className="bg-primary rounded-md flex gap-4 md:gap-2 p-4">
-                <div className="flex justify-center items-center">
-                    <FaUsers className="w-20 h-20 text-2xl font-bold text-white bg-success p-2 rounded-md shadow-md"></FaUsers>
-                </div>
-                <div className="text-white text-xl">
-                    <h1 className="font-bold">Users</h1>
-                    <p>00</p>
-                </div>
-            </div>
-
+            
         </div>
     );
 };

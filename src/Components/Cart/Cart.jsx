@@ -7,11 +7,13 @@ const Cart = () => {
     const totalPrice = cartItem.reduce((current, item) => current + parseInt(item.price), 0);
 
     const handleDeleteItem = (id) => {
-        const remainingItem = cartItem.filter(item => id !== item._id)
+        const remainingItem = cartItem.filter(item => id !== item._id);
+        localStorage.setItem('cartItem', JSON.stringify(remainingItem));
         setCartItem(remainingItem);
     }
 
     const handleDeleteAllItems = () => {
+        localStorage.removeItem('cartItem');
         setCartItem([]);
     }
 

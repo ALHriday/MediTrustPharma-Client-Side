@@ -15,7 +15,7 @@ const Home = () => {
             <Banner />
             <div className="py-6 px-4">
                 <motion.div
-                    initial={{ x: 0, y: -120 }}
+                    initial={{ x: 0, y: -80 }}
                     whileInView={{ x: 0, y: 0 }}
                     transition={{ duration: 0.9 }}
                 >
@@ -23,7 +23,7 @@ const Home = () => {
                 </motion.div>
 
                 <motion.div
-                    initial={{ x: 0, y: 120 }}
+                    initial={{ x: 0, y: 100 }}
                     whileInView={{ x: 0, y: 0 }}
                     transition={{ duration: 0.9 }}
                 >

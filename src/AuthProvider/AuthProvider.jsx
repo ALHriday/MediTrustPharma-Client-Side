@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
     const [cartItem, setCartItem] = useState([]);
     const [category, setCategory] = useState('');
     const [invoiceData, setInvoiceData] = useState([]);
+    const [data, setData] = useState([]);
 
 
     const axiosPublic = useAxiosPublic();
@@ -76,6 +77,11 @@ const AuthProvider = ({ children }) => {
     }, [axiosPublic, category])
 
     useEffect(() => {
+        axiosPublic.get(`products`).then(res => setData(res.data)
+        );
+    }, [axiosPublic]);
+
+    useEffect(() => {
         if (search) {
             axiosPublic.get(`products?title=${search}`).then(res => setProducts(res.data))
             setLoading(false);
@@ -125,7 +131,8 @@ const AuthProvider = ({ children }) => {
         category,
         setCategory,
         invoiceData,
-        setInvoiceData
+        setInvoiceData,
+        data
 
     }
 

@@ -17,7 +17,7 @@ const AdminHome = () => {
             {currentUser?.role == 'seller' ?
                 <SellerHome></SellerHome> :
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 p-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 py-4 gap-4">
                     <div className="bg-slate-100 shadow-md rounded-md flex gap-4 md:gap-2 p-4">
                         <div className="flex justify-center items-center">
                             <FaDollarSign className="w-10 h-10 font-bold text-white bg-accent p-2 rounded-md shadow-md"></FaDollarSign>

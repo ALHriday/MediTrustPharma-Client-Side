@@ -18,10 +18,12 @@ import BannerImage from "../Dashboard/BannerImage";
 import AddProductCategory from "../Dashboard/AddProductCategory";
 import Payment from "../Components/Payment/Payment";
 import PaymentHistory from "../Dashboard/PaymentHistory";
-import AdminHome from "../Dashboard/AdminHome";
+// import AdminHome from "../Dashboard/AdminHome";
 import InvoicePage from "../Dashboard/InvoicePage";
 import JoinUs from "../Components/JoinUs/JoinUs";
 import UserPaymentHistory from "../Dashboard/UserPaymentHistory";
+import DashboardHome from "../Dashboard/DashboardHome";
+// import DashboardHome from "../Dashboard/DashboardHome";
 
 
 export const router = createBrowserRouter([
@@ -70,12 +72,12 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: <PrivateRoute><Dashboard/></PrivateRoute>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/dashboard',
-        element: <PrivateRoute><AdminHome /></PrivateRoute>
+        element: <PrivateRoute><DashboardHome /></PrivateRoute>
       },
       {
         path: '/dashboard/shop',

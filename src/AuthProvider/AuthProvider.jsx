@@ -68,7 +68,6 @@ const AuthProvider = ({ children }) => {
         }
     }, [axiosPublic, user]);
 
-
     useEffect(() => {
         if (category) {
             axiosPublic.get(`products/${category}`).then(res => setProducts(res.data))
@@ -133,7 +132,6 @@ const AuthProvider = ({ children }) => {
         invoiceData,
         setInvoiceData,
         data
-
     }
 
     return (

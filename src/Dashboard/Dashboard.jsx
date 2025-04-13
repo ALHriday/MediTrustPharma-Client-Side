@@ -1,24 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import { FaStackOverflow, FaUser, FaUsers } from "react-icons/fa";
+import {  FaUser, FaUsers } from "react-icons/fa";
 import { GiDatabase } from "react-icons/gi";
+import { FaStackOverflow } from "react-icons/fa6";
 
 const Dashboard = () => {
 
     const { currentUser } = useAuth();
-
-    if (currentUser?.role == 'user') {   
-        {
-            currentUser?.role == 'user' &&
-            <div className="flex flex-col justify-center items-center gap-4 py-12">
-                <h1 className="text-2xl text-center">If you want to be a seller, please contact our customer care and fulfill our requirements. Thank You.</h1>
-                <div className="flex flex-col md:flex-row gap-2">
-                    <button className="btn btn-sm btn-primary text-white">Call: +8801234567892</button>
-                    <button className="btn btn-sm btn-primary text-white">Email: Example123@gmail.com</button>
-                </div>
-            </div>
-        }
-    }
+    
+    // set the first div like a menubar when toggle the menu button
 
     return (
         <div className="grid-cols-1 grid md:grid-cols-4 bg-slate-50">
@@ -30,8 +20,9 @@ const Dashboard = () => {
                     <h1 className="text-2xl md:text-xl font-bold mb-4 ">MediTrustPharma</h1>
                 </div>
                 <div className="flex flex-wrap md:flex-col gap-2 overflow-x-auto">
-                    {currentUser.role == 'admin' && <>
-                        <Link className="btn" to='/dashboard'><FaStackOverflow className="text-teal-500 "></FaStackOverflow>Admin Home</Link>
+                    <Link className="btn" to='/dashboard'><FaStackOverflow className="text-teal-500 "></FaStackOverflow>Statistic</Link>
+
+                    {currentUser?.role == 'admin' && <>
                         <Link className="btn" to='/dashboard/all_user'><FaUsers className="text-teal-500 "></FaUsers>All User</Link>
                         <Link className="btn" to='/dashboard/shop'> <GiDatabase></GiDatabase> Products</Link>
                         <Link className="btn" to='/dashboard/paymentHistory'>Total PaymentHistory</Link>
@@ -39,8 +30,7 @@ const Dashboard = () => {
                         <Link className="btn" to='/dashboard/banner_image'>Update Banner Image</Link>
                         <Link className="btn" to='/dashboard/product_category'>Change Product Category</Link>
                     </>}
-                    {currentUser.role == 'seller' && <>
-                        <Link className="btn" to='/dashboard'> Seller Home</Link>
+                    {currentUser?.role == 'seller' && <>
                         <Link className="btn" to='/dashboard/shop'> My Product</Link>
                         <Link className="btn" to='/dashboard/add_product'> Add Product</Link>
                     </>}
@@ -50,6 +40,7 @@ const Dashboard = () => {
                     <Link className="btn btn-neutral w-full" to='/'>Go to Home</Link>
                 </div>
             </div>
+
             <div className="md:col-span-3 flex flex-col p-4 min-h-screen ">
                 <div className="flex flex-col border-b-2 border-black gap-1 py-4">
                     <h1 className="text-2xl md:text-4xl font-bold">Hi, {currentUser?.userName}.</h1>
@@ -60,12 +51,12 @@ const Dashboard = () => {
                 </div>
 
                 <div className="px-4 overflow-auto max-h-screen">
-                    {currentUser?.role !== 'user' &&
-                        <Outlet></Outlet>}
+                    <Outlet></Outlet>
                 </div>
             </div>
         </div>
     );
 };
+
 
 export default Dashboard;

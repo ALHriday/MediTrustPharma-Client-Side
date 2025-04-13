@@ -21,9 +21,8 @@ const Cart = () => {
         <div>
             <div className="flex justify-between items-center p-4">
                 <h1 className="text-xl md:text-2xl font-bold">Your Cart Items</h1>
+                
                 <div className="flex gap-4 justify-center items-center">
-
-
                     <div>
                         {cartItem.length ?
                             <div onClick={handleDeleteAllItems} className="flex gap-2 justify-center items-center">
@@ -35,10 +34,9 @@ const Cart = () => {
 
                 </div>
             </div>
+
+            {cartItem.length ? <>
             <div className="overflow-x-auto">
-
-
-
                 <table className="table text-black">
                     {/* head */}
                     <thead>
@@ -50,10 +48,7 @@ const Cart = () => {
                         </tr>
                     </thead>
                     <tbody className="">
-                        {/* row 1 */}
-
                         {cartItem && cartItem.map((item, i) => <tr key={i}>
-
                             <td>
                                 <div className="avatar">
                                     <div className="mask mask-circle w-14 h-14 md:w-20 md:h-20">
@@ -68,12 +63,8 @@ const Cart = () => {
                             <td className="text-right">
                                 <button onClick={() => handleDeleteItem(item._id)} className={`btn btn-sm bg-red-600 hover:bg-red-500 text-slate-100`}>Delete</button>
                             </td>
-
                         </tr>)}
-
-
                     </tbody>
-                    {/* foot */}
                     <tfoot>
                         <tr>
                             <th></th>
@@ -96,8 +87,10 @@ const Cart = () => {
                     </>
                         : <> </>}
                 </div>
-
             </div>
+            </> : <div className="flex flex-col justify-center items-center py-2">
+                <h1 className="text-2xl font-bold">No Products Available!</h1>
+                 <Link className="btn btn-link" to='/shop'>Go to shop</Link></div>}
         </div>
     );
 };

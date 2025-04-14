@@ -34,6 +34,10 @@ const DiscountProduct = () => {
                     <img className="w-full h-full object-cover rounded-md" src="https://img.freepik.com/free-photo/medicine-capsules-global-health-with-geometric-pattern-digital-remix_53876-126742.jpg?ga=GA1.1.1576804030.1736064088&semt=ais_hybrid" alt="" />
                 </SwiperSlide>
             </Swiper>
+
+            <div>
+
+            </div>
         </div>
     );
 };

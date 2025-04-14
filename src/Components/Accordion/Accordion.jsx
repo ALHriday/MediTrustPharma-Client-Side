@@ -2,8 +2,8 @@
 
 const Accordion = () => {
     return (
-        <div className="py-6 px-4 flex flex-col gap-2">
-            <h1 className="text-4xl font-bold my-6">Frequently Ask Questions (FAQ).</h1>
+        <div className="pb-6 px-4 flex flex-col gap-2">
+            <h1 className="text-4xl font-bold my-2">Frequently Ask Questions (FAQ).</h1>
             <div className="collapse collapse-arrow bg-base-200">
                 <input type="radio" name="my-accordion-2" defaultChecked />
                 <div className="collapse-title text-xl font-medium">What is MediTrustPharma?</div>

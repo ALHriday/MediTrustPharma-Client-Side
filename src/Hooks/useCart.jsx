@@ -8,7 +8,7 @@ const useCart = () => {
         queryKey: ['cart'],
         queryFn: async () => {
             const res = await axiosPublic.get('/products') || {};
-            return res.data;          
+            return res.data;
         }
     })
     return [cart];

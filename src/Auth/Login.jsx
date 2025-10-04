@@ -4,12 +4,12 @@ import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 
 const Login = () => {
     const { signInWithGoogle, setUser, signInWithEmailAndPassWord, errorMessage, setErrorMessage, showPass, togglePassword } = useAuth();
-
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const showPassRef = useRef();
 
@@ -26,7 +26,7 @@ const Login = () => {
 
                     const userInfo = { userName, userEmail, photoURL, role: 'user', status: '', sellerEmail: '', sellerName: '' };
 
-                    axios.post(`https://medi-trust-pharma-server.vercel.app/users`, userInfo).then(res => {
+                    axiosPublic.post(`/users`, userInfo).then(res => {
                         if (res.data.insertedId) {
                             return res.data;
                         }

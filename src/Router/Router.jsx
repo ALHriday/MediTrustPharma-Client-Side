@@ -23,6 +23,7 @@ import InvoicePage from "../Dashboard/InvoicePage";
 import JoinUs from "../Components/JoinUs/JoinUs";
 import UserPaymentHistory from "../Dashboard/UserPaymentHistory";
 import DashboardHome from "../Dashboard/DashboardHome";
+import Orders from "../Components/Orders/Orders";
 // import DashboardHome from "../Dashboard/DashboardHome";
 
 
@@ -30,31 +31,32 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
+    hydrateFallbackElement: <div className="text-center">Loading...</div>,
     children: [
       {
         path: '/',
-        element: <Home/>
+        element: <Home />
       },
       {
         path: '/login',
-        element: <Login/>
+        element: <Login />
       },
       {
         path: '/register',
-        element: <Register/>
+        element: <Register />
       },
       {
         path: '/categories',
-        element: <Categories/>
+        element: <Categories />
       },
       {
         path: '/shop',
-        element: <Shop/>
+        element: <Shop />
       },
       {
         path: '/updateProfile',
-        element: <PrivateRoute><UpdateProfile/></PrivateRoute>
+        element: <PrivateRoute><UpdateProfile /></PrivateRoute>
       },
       {
         path: '/cart',
@@ -62,17 +64,17 @@ export const router = createBrowserRouter([
       },
       {
         path: '/payment',
-        element: <PrivateRoute><Payment/></PrivateRoute>
+        element: <PrivateRoute><Payment /></PrivateRoute>
       },
       {
         path: '/joinUs',
-        element: <JoinUs/>
+        element: <JoinUs />
       }
     ]
   },
   {
     path: '/dashboard',
-    element: <PrivateRoute><Dashboard/></PrivateRoute>,
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
@@ -93,7 +95,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/update_product/:_id',
-        loader: ({params}) => fetch(`https://medi-trust-pharma-server.vercel.app/product/${params._id}`),
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_server_url}/product/${params._id}`),
         element: <PrivateRoute><UpdateProduct /></PrivateRoute>
       },
       {
@@ -114,12 +116,16 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/userPaymentHistory',
-        element: <UserPaymentHistory/>
+        element: <UserPaymentHistory />
       },
+      {
+        path: '/dashboard/orders',
+        element: <Orders />
+      }
     ]
   },
   {
     path: '/InvoicePage',
-    element: <InvoicePage/>
+    element: <InvoicePage />
   }
 ]);

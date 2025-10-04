@@ -9,12 +9,14 @@ import usePayment from "../../Hooks/usePayment";
 
 
 const CheckoutForm = () => {
+
     const [clientSecret, setClientSecret] = useState('');
     const [error, setError] = useState('');
     const axiosPublic = useAxiosPublic();
 
     const { currentUser, cartItem, setCartItem, setInvoiceData } = useAuth();
-    const totalPrice = cartItem.reduce((current, item) => current + parseInt(item.price), 0);
+
+    const totalPrice = (cartItem ?? []).reduce((current, item) => current + parseFloat(item.price) * parseFloat(item.quantity), 0);
 
     const navigate = useNavigate();
     const [refetch] = usePayment();
@@ -25,9 +27,7 @@ const CheckoutForm = () => {
     useEffect(() => {
         if (totalPrice > 0) {
             axiosPublic.post('/create-payment-intent', { price: totalPrice })
-                .then(res => {
-                    setClientSecret(res.data.clientSecret);
-                })
+                .then(res => setClientSecret(res.data.clientSecret))
         }
     }, [axiosPublic, totalPrice])
 
@@ -84,10 +84,10 @@ const CheckoutForm = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    
+
 
                 } else {
-                
+
                     const buyerEmail = currentUser?.userEmail;
                     const buyerName = currentUser?.userName;
                     const transactionId = paymentIntent?.id;
@@ -95,9 +95,9 @@ const CheckoutForm = () => {
                     const payment_method = paymentIntent?.payment_method_types;
                     const currency = paymentIntent?.currency;
                     const price = totalPrice;
-                    
+
                     const paymentInfo = { buyerEmail, buyerName, transactionId, price, status, payment_method, currency };
-                    
+
                     setInvoiceData(cartItem);
 
                     axiosPublic.post('/payments', paymentInfo)
@@ -115,7 +115,11 @@ const CheckoutForm = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate('/InvoicePage', {state: {paymentIntent}});
+
+                    axiosPublic.post('/checkout', { userId: currentUser?._id, cartItem: cartItem });
+
+
+                    navigate('/InvoicePage', { state: { paymentIntent } });
                     localStorage.removeItem('cartItem');
                     setCartItem([]);
                 }

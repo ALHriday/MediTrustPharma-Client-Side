@@ -16,19 +16,19 @@ const Home = () => {
             <Banner />
             <div className="py-6 px-4 flex flex-col gap-2">
                 <motion.div
-                    initial={{ x: 0, y: -80 }}
+                    initial={{ x: 0, y: -50 }}
                     whileInView={{ x: 0, y: 0 }}
-                    transition={{ duration: 0.9 }}
+                    transition={{ duration: 0.3 }}
                 >
-                    <h1 className="text-center text-2xl lg:text-4xl font-bold mb-2">Your Trusted Partner in Health and Wellness.</h1>
+                    <h1 className="text-center text-2xl font-bold mb-2">Your Trusted Partner in Health and Wellness.</h1>
                 </motion.div>
 
                 <motion.div
-                    initial={{ x: 0, y: 100 }}
+                    initial={{ x: 0, y: 50 }}
                     whileInView={{ x: 0, y: 0 }}
-                    transition={{ duration: 0.9 }}
+                    transition={{ duration: 0.3 }}
                 >
-                    <p className="text-slate-500 text-center lg:text-xl">MediTrustPharma is a trusted online platform for authentic medicines and healthcare products. With a wide range of offerings, easy prescription uploads, and fast doorstep delivery, we simplify your healthcare journey while ensuring quality and affordability.</p>
+                    <p className="text-slate-500 text-center">MediTrustPharma is a trusted online platform for authentic medicines and healthcare products. With a wide range of offerings, easy prescription uploads, and fast doorstep delivery, we simplify your healthcare journey while ensuring quality and affordability.</p>
                 </motion.div>
             </div>
             <Categories />

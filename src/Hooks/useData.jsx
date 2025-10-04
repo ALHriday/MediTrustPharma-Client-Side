@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 const useData = () => {
     const axiosPublic = useAxiosPublic();
 
-    const {data: data = [], isLoading } = useQuery({
+    const { data: data = [], isLoading, refetch } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
             const res = await axiosPublic.get('/products') || {};
@@ -12,7 +12,7 @@ const useData = () => {
         }
     });
 
-    return [data, isLoading];
+    return [data, isLoading, refetch];
 };
 
 export default useData;

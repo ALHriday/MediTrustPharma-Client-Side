@@ -89,7 +89,7 @@ const AllUser = () => {
             </div>
 
 
-            <div className="overflow-x-auto">
+            <div className="overflow-auto">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -105,7 +105,7 @@ const AllUser = () => {
                         {/* row 1 */}
 
                         {userData && userData.map((user, i) => <tr key={i}>
-                            <td >
+                            <td>
                                 <div className="flex items-center gap-3">
                                     <div className="avatar">
                                         <div className="mask mask-squircle h-12 w-12">

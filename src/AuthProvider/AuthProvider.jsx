@@ -22,9 +22,17 @@ const AuthProvider = ({ children }) => {
     const [category, setCategory] = useState('');
     const [invoiceData, setInvoiceData] = useState([]);
     const [data, setData] = useState([]);
-
+    const [stats, setStats] = useState([]);
+    const [quantity, setQuantity] = useState(1);
 
     const axiosPublic = useAxiosPublic();
+
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cartItem');
+        if (storedCart) {
+            setCartItem(JSON.parse(storedCart));
+        }
+    }, [])
 
     const signInWithGoogle = () => {
         setLoading(true);
@@ -36,6 +44,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signOut(auth);
     }
+
     const createAccountWithEmailAndPass = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
@@ -58,13 +67,16 @@ const AuthProvider = ({ children }) => {
     const notify = (text) => toast(text);
 
     useEffect(() => {
+        axiosPublic.get(`/stats`).then(res => setStats(res.data)).catch(error => error);
+    }, [axiosPublic])
+
+    useEffect(() => {
         if (user) {
             axiosPublic.get(`/users/${user?.email}`)
                 .then(res => {
                     setCurrentUser(res.data);
                     setLoading(false);
-                }
-                )
+                })
         }
     }, [axiosPublic, user]);
 
@@ -99,6 +111,7 @@ const AuthProvider = ({ children }) => {
         return () => unSubscribe();
     }, []);
 
+
     const values = {
         loading,
         setLoading,
@@ -131,7 +144,11 @@ const AuthProvider = ({ children }) => {
         setCategory,
         invoiceData,
         setInvoiceData,
-        data
+        data,
+        stats,
+        setStats,
+        quantity,
+        setQuantity,
     }
 
     return (

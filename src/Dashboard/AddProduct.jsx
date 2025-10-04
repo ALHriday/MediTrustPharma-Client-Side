@@ -5,14 +5,14 @@ import Swal from "sweetalert2";
 const AddProduct = () => {
     const { currentUser } = useAuth();
     const axiosPublic = useAxiosPublic();
-    
+
     const sellerName = currentUser?.userName;
     const sellerEmail = currentUser?.userEmail;
-    
+
     const HandleUpdateProduct = (e) => {
         e.preventDefault();
         const form = e.target;
-        
+
 
         const title = form.title.value;
         const price = form.price.value;
@@ -25,17 +25,17 @@ const AddProduct = () => {
 
         const productInfo = {
             title,
-            price,
-            quantity,
+            price: parseFloat(price),
+            quantity: parseFloat(quantity),
             category,
             image,
             description,
             sellerName,
             sellerEmail,
             company,
-            discount
+            discount: parseFloat(discount),
         };
-        
+
 
         axiosPublic.post(`/products`, productInfo)
             .then(res => {

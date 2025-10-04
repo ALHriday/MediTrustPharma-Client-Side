@@ -5,7 +5,6 @@ import { Link, useLocation } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { GiDatabase } from "react-icons/gi";
-import { useEffect } from "react";
 import useSellerProduct from "../../Hooks/useSellerProduct";
 
 const Shop = () => {
@@ -15,17 +14,6 @@ const Shop = () => {
 
     const location = useLocation();
     const axiosPublic = useAxiosPublic();
-
-    useEffect(() => {
-        const storedCart = localStorage.getItem('cartItem')
-        if (storedCart) {
-            setCartItem(JSON.parse(storedCart));
-        }
-    }, [setCartItem])
-
-    useEffect(() => {
-        localStorage.setItem('cartItem', JSON.stringify(cartItem))
-    }, [cartItem])
 
     const handleShowDetails = (product) => {
 
@@ -82,14 +70,18 @@ const Shop = () => {
     }
 
     const handleAddToCart = (productItem, id) => {
-        const currentProduct = cartItem.find(p => id === p._id);
+        const currentProduct = (cartItem || []).find(p => id === p._id);
 
         if (currentProduct) {
             return notify(`${productItem.title} already Exist.`);
         }
 
-        setCartItem([...cartItem, productItem]);
-        notify(`${productItem.title} added to Cart`);
+        const { title, image, _id, price } = productItem;
+        const quantity = 1;
+        const item = { title, image, _id, price: parseFloat(price), quantity: quantity }
+        setCartItem([...cartItem, item]);
+        localStorage.setItem('cartItem', JSON.stringify([...cartItem, item]));
+        notify(`${productItem?.title || ''} added to Cart`);
     }
 
 
@@ -99,28 +91,28 @@ const Shop = () => {
                 <title>MediTrust | Shop</title>
             </Helmet>
             {currentUser?.role == 'seller' && location.pathname == '/dashboard/shop' ?
-                    <> </> : <>
-            <div className={` ${location.pathname == '/dashboard/shop' ? "top-[0px] justify-between" : "top-[66px] justify-center"} sticky shadow-sm bg-slate-50 z-10 flex gap-2 items-center py-4`}>
-                
-                <div className="hidden md:flex">
+                <> </> : <>
+                    <div className={` ${location.pathname == '/dashboard/shop' ? "top-[0px] justify-between" : "top-[66px] justify-center"} sticky shadow-sm bg-slate-50 z-10 flex gap-2 items-center py-4`}>
 
-                </div>
-                <label className="input input-bordered flex items-center gap-2">
-                    <input onChange={(e) => handleSearch(e)} type="text" className="grow" placeholder="Search..." />
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 16 16"
-                        fill="currentColor"
-                        className="h-4 w-4 opacity-70">
-                        <path
-                            fillRule="evenodd"
-                            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                            clipRule="evenodd" />
-                    </svg>
-                </label>
-                <div className="pr-4 font-bold"> {location.pathname == '/dashboard/shop' ? <p className="inline-flex justify-center items-center text-2xl font-bold"> <GiDatabase></GiDatabase> {products.length < 10 ? `0${products.length}` : `${products.length}`}</p> : ''}  </div>
-                </div>
-            </>}
+                        <div className="hidden md:flex">
+
+                        </div>
+                        <label className="input input-bordered flex items-center gap-2">
+                            <input onChange={(e) => handleSearch(e)} type="text" className="grow" placeholder="Search..." />
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 16 16"
+                                fill="currentColor"
+                                className="h-4 w-4 opacity-70">
+                                <path
+                                    fillRule="evenodd"
+                                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                                    clipRule="evenodd" />
+                            </svg>
+                        </label>
+                        <div className="pr-4 font-bold"> {location.pathname == '/dashboard/shop' ? <p className="inline-flex justify-center items-center text-2xl font-bold"> <GiDatabase></GiDatabase> {products.length < 10 ? `0${products.length}` : `${products.length}`}</p> : ''}  </div>
+                    </div>
+                </>}
 
             <div className="overflow-x-auto">
                 <table className="table">

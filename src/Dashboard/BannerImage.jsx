@@ -1,9 +1,9 @@
-import axios from "axios";
 import useBannerImage from "../Hooks/useBannerImage";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const BannerImage = () => {
-
+    const axiosPublic = useAxiosPublic();
     const [images, refetch] = useBannerImage();
 
     const { _id, image1, image2, image3 } = images[0] || {};
@@ -18,7 +18,7 @@ const BannerImage = () => {
 
         const imageData = { image1, image2, image3 };
 
-        axios.put(`https://medi-trust-pharma-server.vercel.app/bannerImage/${_id}`, imageData)
+        axiosPublic.put(`/bannerImage/${_id}`, imageData)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     refetch();
